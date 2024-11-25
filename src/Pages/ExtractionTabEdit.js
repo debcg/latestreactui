@@ -211,8 +211,15 @@ const lableMapping =`{
          
           <div>
               
-              <label className="block font-semibold">Invoice Id</label>
-              <div className={`input-container ${errors.invoiceId ? "input-error" : ""}`}>
+          <label
+              className={hilightedFields !=null && hilightedFields.includes('InvoiceId') ? 'text-red-500' : ''}
+            >
+              Invoice Id
+            </label>
+              <div 
+              className={`input-container ${errors.invoiceId ? "input-error" : ""}`}
+              
+              >
                 <Input
                   type="number"
                   placeholder="Enter Invoice Id"
@@ -221,7 +228,12 @@ const lableMapping =`{
                     handleInputChange("invoice.InvoiceId.Value", e.target.value)
                   }
                  
-                  className={`no-border ${errors.invoiceId ? "input-error" : ""}`}
+                 
+                  className={`${
+                    hilightedFields != null && hilightedFields.includes("InvoiceId")
+                      ? "input-error"
+                      : ""
+                  } ${errors.invoiceId ? "input-error" : ""}`}
                 />
                 {errors.invoiceId && <span className="error-asterisk">*</span>}
               </div>

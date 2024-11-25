@@ -1,0 +1,28 @@
+/* Hide the calendar icon */
+.custom-range-picker .ant-picker-suffix,
+.custom-range-picker .ant-picker-clear {
+  display: none !important;
+  border: none !important;
+}
+
+.custom-range-picker.ant-picker {
+  padding-right: 1px !important;
+  border: none !important;
+}
+
+.custom-range-picker .ant-picker-input > input {
+  padding-right: 0 !important;
+  border: none !important;
+}
+.custom-range-picker svg {
+  display: none !important;
+  border: none !important;
+}
+.custom-range-picker.ant-picker-outlined{
+    border: none !important;
+}
+
+.recharts-responsive-container .recharts-legend-wrapper{
+ top: 65px !important;
+ left: 0px !important;
+}

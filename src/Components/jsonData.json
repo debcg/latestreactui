@@ -1,0 +1,352 @@
+{
+    "__data__": {
+        "data": {
+            "invoice": {
+                "InvoiceId": {
+                    "Value": 1924786,
+                    "Confidence": 0.949,
+                    "ext_source": "DI"
+                },
+                "InvoiceDate": {
+                    "Value": "2024-03-01",
+                    "Confidence": 0.966,
+                    "ext_source": "DI"
+                },
+                "DueDate": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "CustomerId": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "CustomerName": {
+                    "Value": "LOS SANTOS DISTRIBUTION LTD",
+                    "Confidence": 0.887,
+                    "ext_source": "DI"
+                },
+                "CustomerAddress": {
+                    "Value": {
+                        "house_number": null,
+                        "po_box": "PO BOX 198",
+                        "road": null,
+                        "city": null,
+                        "state": "NSW",
+                        "postal_code": 2125,
+                        "country_region": null,
+                        "street_address": "PO BOX 198",
+                        "unit": null,
+                        "city_district": null,
+                        "state_district": null,
+                        "suburb": null,
+                        "house": null,
+                        "level": null
+                    },
+                    "Confidence": 0.89,
+                    "ext_source": "DI"
+                },
+                "CustomerTaxId": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "VendorTaxId": {
+                    "Value": "89 217 152 762",
+                    "Confidence": 0.678,
+                    "ext_source": "DI"
+                },
+                "VendorName": {
+                    "Value": "LOGAN METALS",
+                    "Confidence": 0.93,
+                    "ext_source": "DI"
+                },
+                "VendorAddressRecipient": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "VendorAddress": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "PurchaseOrder": {
+                    "Value": "",
+                    "Confidence": "",
+                    "ext_source": "DI"
+                },
+                "BillingAddressRecipient": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "BillingAddress": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "RemittanceAddressRecipient": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "RemittanceAddress": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "ShippingAddressRecipient": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "ShippingAddress": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "ServiceAddressRecipient": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "ServiceAddress": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "ServiceStartDate": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "ServiceEndDate": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "PaymentTerm": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "SubTotal": {
+                    "Value": {
+                        "amount": 344.53,
+                        "symbol": "$",
+                        "code": "AUD"
+                    },
+                    "Confidence": 0.965,
+                    "ext_source": "DI"
+                },
+                "TotalTax": {
+                    "Value": {
+                        "amount": 34.45,
+                        "symbol": "$",
+                        "code": "AUD"
+                    },
+                    "Confidence": 0.95,
+                    "ext_source": "DI"
+                },
+                "TotalDiscount": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "InvoiceTotal": {
+                    "Value": {
+                        "amount": 378.98,
+                        "symbol": "$",
+                        "code": "AUD"
+                    },
+                    "Confidence": 0.956,
+                    "ext_source": "DI"
+                },
+                "AmountDue": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "CurrencyCode": {
+                    "Value": "AUD",
+                    "Confidence": 0.956,
+                    "ext_source": "DI"
+                },
+                "PreviousUnpaidBalance": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "Gl_Code": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "Cost_Centre": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "Approver": {
+                    "Value": "",
+                    "Confidence": 0,
+                    "ext_source": "DI"
+                },
+                "Item": [
+                    {
+                        "ProductCode": {
+                            "Value": "",
+                            "Confidence": null
+                        },
+                        "Description": {
+                            "Value": "60mm - 4140 Alloy Round H&T T&P h11",
+                            "Confidence": 0.915
+                        },
+                        "Quantity": {
+                            "Value": 1,
+                            "Confidence": 0.681
+                        },
+                        "Unit": {
+                            "Value": "EAC",
+                            "Confidence": 0.277
+                        },
+                        "UnitPrice": {
+                            "Value": 344.53,
+                            "Confidence": 0.749
+                        },
+                        "Date": {
+                            "Value": "",
+                            "Confidence": null
+                        },
+                        "Tax": {
+                            "Value": "",
+                            "Confidence": null
+                        },
+                        "Amount": {
+                            "Value": 344.53,
+                            "Confidence": 0.915
+                        }
+                    }
+                ],
+                "BSBNumber": {
+                    "Value": "",
+                    "Confidence": "",
+                    "ext_source": "DI"
+                },
+                "Freight": {
+                    "Value": "$0.00",
+                    "Confidence": 0.926,
+                    "ext_source": "DI"
+                },
+                "BankAccountNumber": {
+                    "Value": 6301258652,
+                    "Confidence": "",
+                    "ext_source": "DI"
+                },
+                "erp_name": "ERP not identified - route to manual queue",
+                "event_details": {
+                    "event_time": "2024-10-30T09:39:52.0000000Z",
+                    "event_id": "JLdNtk9kDls8DhpKQL2mu4eEnfqCXtH1jdIOjecISRf8Hwp8lMo9LFTGKWca",
+                    "subject": "Invoice Data Extracted"
+                }
+            },
+            "source": {
+                "transaction": {
+                    "id": "LOGAN_ManualQ_edited_20241030093945859972pxAk7.pdf",
+                    "transaction_time": "2024-10-30T09:39:46"
+                },
+                "email_details": {
+                    "Attachment": "LOGAN_ManualQ_edited_20241030093945859972pxAk7.pdf",
+                    "Original_name": "LOGAN_ManualQ_edited.pdf"
+                },
+                "event_details": {
+                    "event_time": "2024-10-30T09:39:46.0000000Z",
+                    "event_id": "E8FKaJlhf3nIi4tvj1opaxTCKHhe41QnnyWjBGCrIJEzInwlSz8B3y3OzdUU",
+                    "subject": "New Invoice"
+                }
+            },
+            "extraction_validation": {
+                "performance": "2.845845ms",
+                "result": {
+                    "fields": [
+                        {
+                            "field": "bill_to_address",
+                            "message": "Bill To Address is Available",
+                            "status": "True"
+                        },
+                        {
+                            "field": "bill_to_entity",
+                            "message": "Bill to Entity Name is Available",
+                            "status": "True"
+                        },
+                        {
+                            "field": "erp",
+                            "message": "ERP not identified - route to manual queue",
+                            "status": "False"
+                        },
+                        {
+                            "field": "gross_amount",
+                            "message": "Gross Amount is Available",
+                            "status": "True"
+                        },
+                        {
+                            "field": "invoice_currency",
+                            "message": "Invoice Currency is Available",
+                            "status": "True"
+                        },
+                        {
+                            "field": "invoice_date",
+                            "message": "Invoice Date is Available",
+                            "status": "True"
+                        },
+                        {
+                            "field": "invoice_id",
+                            "message": "Invoice Number is Available",
+                            "status": "True"
+                        },
+                        {
+                            "field": "invoice_id_pattern",
+                            "message": "Invoice ID matches pattern",
+                            "status": "True"
+                        },
+                        {
+                            "field": "net_price_amount",
+                            "message": "Net Price Amount is Available",
+                            "status": "True"
+                        },
+                        {
+                            "field": "purchase_order",
+                            "message": "PO Number is Missing",
+                            "status": "False"
+                        },
+                        {
+                            "field": "tax_amount",
+                            "message": "Tax Amount is Available",
+                            "status": "True"
+                        },
+                        {
+                            "field": "vendor_name",
+                            "message": "Vendor Name is Available",
+                            "status": "True"
+                        },
+                        {
+                            "field": "vendor_tax_id",
+                            "message": "Tax Number is Available",
+                            "status": "True"
+                        }
+                    ],
+                    "overallStatus": "True"
+                },
+                "event_details": {
+                    "event_time": "2024-10-30T09:39:53.0000000Z",
+                    "event_id": "IHXh7GgkhHJ6nI5Rok516qD1YDQpzwNCAK3ez471dbJBUZcEPkJRKi3hXqUd",
+                    "subject": "Extraction Validated"
+                }
+            }
+        },
+        "subject": "Extraction Validated",
+        "id": "IHXh7GgkhHJ6nI5Rok516qD1YDQpzwNCAK3ez471dbJBUZcEPkJRKi3hXqUd"
+    }
+}

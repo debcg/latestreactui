@@ -1,0 +1,885 @@
+{
+    "data": [
+        {
+            "invoiceDate": "2024-09-04T00:00:00.0000000Z",
+            "invoiceId": "INV24060",
+            "purchase_order": "MAN0099626",
+            "vendor_name": "SENSEI Ag",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "MAN3_20241108132001239290ZSOTl.pdf",
+            "timestamp": "2024-11-08T18:50:20.203",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-01T00:00:00.0000000Z",
+            "invoiceId": "LIC 2024-1351",
+            "purchase_order": "",
+            "vendor_name": "InsermTransfert",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "LIC2024-1351_20241108083518846868UGgdT.pdf",
+            "timestamp": "2024-11-08T14:05:38.252",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-31T00:00:00.0000000Z",
+            "invoiceId": 1980421,
+            "purchase_order": "",
+            "vendor_name": "SIRVA Relocation, LLC",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "1980421_20241108083458376488adFb7.pdf",
+            "timestamp": "2024-11-08T14:05:38.248",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-11-06T00:00:00.0000000Z",
+            "invoiceId": "L131648",
+            "purchase_order": 6304024,
+            "vendor_name": "FEDEX CUSTOM CRITICAL",
+            "subject": "Extraction Validated",
+            "transaction_id": "L131648_20241108083509765743xVXeG.pdf",
+            "timestamp": "2024-11-08T14:05:38.243",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-11-02T00:00:00.0000000Z",
+            "invoiceId": 435469,
+            "purchase_order": "",
+            "vendor_name": "First Choice Coffee Services",
+            "subject": "Extraction Validated",
+            "transaction_id": "435469_20241108083449568867ym4sq.pdf",
+            "timestamp": "2024-11-08T14:05:38.212",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-11-05T00:00:00.0000000Z",
+            "invoiceId": 183046,
+            "purchase_order": "",
+            "vendor_name": "COLBERT\nPACKAGING\nCORPORATION",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "183046_202411080834389750103lkaV.pdf",
+            "timestamp": "2024-11-08T14:05:38.186",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "N/A",
+            "invoiceId": "N/A",
+            "purchase_order": "N/A",
+            "vendor_name": "N/A",
+            "subject": "New Invoice",
+            "transaction_id": "S110HPH-NPO-Handwritten2_202411080554100420759QqFF.PDF",
+            "timestamp": "2024-11-08T11:24:55.571",
+            "status": "New Invoice"
+        },
+        {
+            "invoiceDate": "2024-09-02T00:00:00.0000000Z",
+            "invoiceId": 2098082447,
+            "purchase_order": "KEINE",
+            "vendor_name": "HEIDELBERG",
+            "subject": "Extraction Validated",
+            "transaction_id": "HBN_20241108055058510247yL604.PDF",
+            "timestamp": "2024-11-08T11:21:08.383",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-02-10T00:00:00.0000000Z",
+            "invoiceId": "US 24025786",
+            "purchase_order": "",
+            "vendor_name": "G\ngroninger",
+            "subject": "Extraction Validated",
+            "transaction_id": "US24025786_20241108052640492589Q6NeU.pdf",
+            "timestamp": "2024-11-08T10:56:50.848",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-14T00:00:00.0000000Z",
+            "invoiceId": "AB53043385",
+            "purchase_order": "",
+            "vendor_name": "FedEx\n®\nFreight",
+            "subject": "Extraction Validated",
+            "transaction_id": "1002222_20241108052627961037S00MA.pdf",
+            "timestamp": "2024-11-08T10:56:43.027",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-19T00:00:00.0000000Z",
+            "invoiceId": "00225079",
+            "purchase_order": 3000067544,
+            "vendor_name": "ACCURISTIX",
+            "subject": "Extraction Validated",
+            "transaction_id": "00225079_20241108052616993155AjHp1.pdf",
+            "timestamp": "2024-11-08T10:56:24.686",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-31T00:00:00.0000000Z",
+            "invoiceId": "00000631",
+            "purchase_order": "",
+            "vendor_name": "GABRIELLI LEANDRO MARTIN",
+            "subject": "Extraction Validated",
+            "transaction_id": "00002C00000631_20241108052601727890oYbC4.pdf",
+            "timestamp": "2024-11-08T10:56:16.945",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-11-04T00:00:00.0000000Z",
+            "invoiceId": "0001-00649514",
+            "purchase_order": "",
+            "vendor_name": "GLOBAL\nAMERICAN\nBUSINESS\nEXPRESS\nTRAVEL",
+            "subject": "Extraction Validated",
+            "transaction_id": "0001A00649514_202411080525487160216IPcK.pdf",
+            "timestamp": "2024-11-08T10:56:03.452",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-01T00:00:00.0000000Z",
+            "invoiceId": "",
+            "purchase_order": "",
+            "vendor_name": "ハイデルベルグ·ジャパン株式会社 御中",
+            "subject": "Extraction Validated",
+            "transaction_id": "S080HJP-PO-Multiplelines_20241108044247726178gMZ1w.PDF",
+            "timestamp": "2024-11-08T10:13:02.546",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-31T00:00:00.0000000Z",
+            "invoiceId": "RG241749",
+            "purchase_order": 4524584380,
+            "vendor_name": "NAGELE\nMECHANIK",
+            "subject": "Extraction Validated",
+            "transaction_id": "RG241749_20241108035343718660XqBhK.PDF",
+            "timestamp": "2024-11-08T09:23:52.013",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-11-01T00:00:00.0000000Z",
+            "invoiceId": 1208842,
+            "purchase_order": "4400658711\n4400658711\n4400658711\n4400658711\n4400658711\n4400658711",
+            "vendor_name": "edicom\nconnecting business",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "4025_20241107162852778953sfuV2.pdf",
+            "timestamp": "2024-11-07T21:59:06.809",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-11-06T00:00:00.0000000Z",
+            "invoiceId": 55075803,
+            "purchase_order": 128536616,
+            "vendor_name": "GALAXUS",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "1095_202411071628378275646sdJ2.pdf",
+            "timestamp": "2024-11-07T21:58:51.999",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-31T00:00:00.0000000Z",
+            "invoiceId": "",
+            "purchase_order": "",
+            "vendor_name": "IHVG\nIndustrie- und Handelsverband\nGrenchen und Umgebung",
+            "subject": "Extraction Validated",
+            "transaction_id": "1094_20241107162824535675EEiXA.pdf",
+            "timestamp": "2024-11-07T21:58:38.415",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-25T00:00:00.0000000Z",
+            "invoiceId": 202450645,
+            "purchase_order": "2024-25-003",
+            "vendor_name": "PROGRESS CA, s.r.o.",
+            "subject": "Extraction Validated",
+            "transaction_id": "1025_20241107162813073859u99h1.pdf",
+            "timestamp": "2024-11-07T21:58:22.684",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "",
+            "invoiceId": "4642/PA/11/2024",
+            "purchase_order": 4300267482,
+            "vendor_name": "Passimed Spółka z Ograniczoną Odpowiedzialnością",
+            "subject": "Extraction Validated",
+            "transaction_id": "1024_20241107162803689609ukA1S.pdf",
+            "timestamp": "2024-11-07T21:58:22.045",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-31T00:00:00.0000000Z",
+            "invoiceId": 249357,
+            "purchase_order": 4400658872,
+            "vendor_name": "HANZO Production, spol. s r.o.",
+            "subject": "Extraction Validated",
+            "transaction_id": "1023_20241107162751782420DjJU7.pdf",
+            "timestamp": "2024-11-07T21:58:22.029",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-11-05T00:00:00.0000000Z",
+            "invoiceId": 1005584,
+            "purchase_order": 4400643651,
+            "vendor_name": "BUSINESS LEASE",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "1022_20241107162737661081FRXpA.pdf",
+            "timestamp": "2024-11-07T21:58:22.005",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-31T00:00:00.0000000Z",
+            "invoiceId": 90921492,
+            "purchase_order": 4300256937,
+            "vendor_name": "pharmaserv\nstandortmanagement und services",
+            "subject": "Extraction Validated",
+            "transaction_id": "1010_20241107162127191546V210d.pdf",
+            "timestamp": "2024-11-07T21:52:18.417",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-24T00:00:00.0000000Z",
+            "invoiceId": "R2422845",
+            "purchase_order": 4501766938,
+            "vendor_name": "TRAFO\nLinde",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "INV5_202411061758224771737pfOq.PDF",
+            "timestamp": "2024-11-06T23:28:35.131",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-07-28T00:00:00.0000000Z",
+            "invoiceId": "2024-01-01",
+            "purchase_order": 4501763938,
+            "vendor_name": "Dr. Xianrui Wang",
+            "subject": "Extraction Validated",
+            "transaction_id": "INV4_20241106175811126659H0772.PDF",
+            "timestamp": "2024-11-06T23:28:20.948",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2023-07-31T00:00:00.0000000Z",
+            "invoiceId": "652397080 (07)",
+            "purchase_order": "",
+            "vendor_name": "TSR\nTHE METAL COMPANY",
+            "subject": "Extraction Validated",
+            "transaction_id": "CN_20241106175759438939mmGxK.PDF",
+            "timestamp": "2024-11-06T23:28:17.029",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-17T00:00:00.0000000Z",
+            "invoiceId": 475020480941,
+            "purchase_order": "",
+            "vendor_name": "nterprise",
+            "subject": "Extraction Validated",
+            "transaction_id": "475020480941_202411061757484069881ly9H.PDF",
+            "timestamp": "2024-11-06T23:28:17.013",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-03-28T00:00:00.0000000Z",
+            "invoiceId": 94215958863,
+            "purchase_order": 4501460890,
+            "vendor_name": "CSC",
+            "subject": "Extraction Validated",
+            "transaction_id": "94215958863_202411061757351369008tOMW.PDF",
+            "timestamp": "2024-11-06T23:28:17.005",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-07T00:00:00.0000000Z",
+            "invoiceId": 2008,
+            "purchase_order": "",
+            "vendor_name": "STOHNER\nLIMOUSINENSERVICE",
+            "subject": "Extraction Validated",
+            "transaction_id": "071024-277_20241106174347623371OSxJO.PDF",
+            "timestamp": "2024-11-06T23:14:22.871",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-03T00:00:00.0000000Z",
+            "invoiceId": "",
+            "purchase_order": "",
+            "vendor_name": "AG Insurance (afgekort AG] NV",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "74591_20241106174336205725wfzAg.pdf",
+            "timestamp": "2024-11-06T23:14:22.852",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-24T00:00:00.0000000Z",
+            "invoiceId": "01028530",
+            "purchase_order": "",
+            "vendor_name": "Partena\nPROFESSIONAL",
+            "subject": "Extraction Validated",
+            "transaction_id": "01028530_20241106174212195127m2ulH.pdf",
+            "timestamp": "2024-11-06T23:12:34.968",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-31T00:00:00.0000000Z",
+            "invoiceId": 2447877,
+            "purchase_order": 5701251886,
+            "vendor_name": "BAYRAK TECHNIK",
+            "subject": "Extraction Validated",
+            "transaction_id": "2447877_202411061742001154556Zmq0.PDF",
+            "timestamp": "2024-11-06T23:12:13.547",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-15T00:00:00.0000000Z",
+            "invoiceId": 24100168,
+            "purchase_order": "2024006992-1",
+            "vendor_name": "Härtetechnik\nHagen\nINNOVATIVE WÄRMEBEHANDLUNG",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "24100168_202411061741481721913c4Eo.PDF",
+            "timestamp": "2024-11-06T23:11:56.726",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-08T00:00:00.0000000Z",
+            "invoiceId": 7400510015,
+            "purchase_order": "",
+            "vendor_name": "proximus",
+            "subject": "Extraction Validated",
+            "transaction_id": "7400510015_20241106174137509968FSL57.pdf",
+            "timestamp": "2024-11-06T23:11:52.626",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-23T00:00:00.0000000Z",
+            "invoiceId": "22356-24-033821-M",
+            "purchase_order": "",
+            "vendor_name": "ONI-PASS",
+            "subject": "Extraction Validated",
+            "transaction_id": "S090HKR-PO-Locallanguage_20241106173541758010G8Fl4.PDF",
+            "timestamp": "2024-11-06T23:06:07.790",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-28T00:00:00.0000000Z",
+            "invoiceId": "20241028-10241028-25851153",
+            "purchase_order": "",
+            "vendor_name": "주식회사 와우로지스틱",
+            "subject": "Extraction Validated",
+            "transaction_id": "S090HKR-NPO-Locallanguage_20241106173530275842rc3kK.PDF",
+            "timestamp": "2024-11-06T23:06:07.770",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "",
+            "invoiceId": 3152,
+            "purchase_order": "",
+            "vendor_name": "International\nContainer Terminal\nServices, Inc.",
+            "subject": "Extraction Validated",
+            "transaction_id": "S110HPH-NPO-Handwritten1_20241106165138770904XHMHk.PDF",
+            "timestamp": "2024-11-06T22:21:52.368",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-29T00:00:00.0000000Z",
+            "invoiceId": "FG56167100",
+            "purchase_order": "",
+            "vendor_name": "史代新股份有限公司",
+            "subject": "Extraction Validated",
+            "transaction_id": "S130HTW-NPO-LocalLanguage_20241106164853714605IlSzY.PDF",
+            "timestamp": "2024-11-06T22:19:07.196",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-11-01T00:00:00.0000000Z",
+            "invoiceId": "BO2410001007",
+            "purchase_order": "",
+            "vendor_name": "ORIX",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "S140HTH-NPO-LocalLanguage_20241106164841944232rusd7.PDF",
+            "timestamp": "2024-11-06T22:18:50.819",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-11-01T00:00:00.0000000Z",
+            "invoiceId": "IV6711-00053",
+            "purchase_order": "",
+            "vendor_name": "BANGKOK\nR\nOLLER",
+            "subject": "Extraction Validated",
+            "transaction_id": "S140HTH-PO-LocalLanguage_20241106164803844341AmVG1.PDF",
+            "timestamp": "2024-11-06T22:18:50.188",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-17T00:00:00.0000000Z",
+            "invoiceId": "INGTT-2409-0230",
+            "purchase_order": "",
+            "vendor_name": "KEMENTERIAN KEUANGAN REPUBLIK INDONESIA\nDIREKTORAT JENDERAL BEA DAN CUKAI",
+            "subject": "Extraction Validated",
+            "transaction_id": "S070HID-PO-Multiplelines_2024110616455816223155ofR.PDF",
+            "timestamp": "2024-11-06T22:16:21.228",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-12T00:00:00.0000000Z",
+            "invoiceId": "FC/668778-EC/668778",
+            "purchase_order": "",
+            "vendor_name": "SURANSI",
+            "subject": "Extraction Validated",
+            "transaction_id": "S070HID-NPO-Unclearimage_20241106164316615801O1Hvs.PDF",
+            "timestamp": "2024-11-06T22:13:57.693",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-28T00:00:00.0000000Z",
+            "invoiceId": "LGS/2024/10/0309",
+            "purchase_order": "4561570051;",
+            "vendor_name": "LIGUM Pol Sp. z o.o.",
+            "subject": "Extraction Validated",
+            "transaction_id": "PL+FREIGHT+MIXEDLINES_20241106164154816925EWdNE.PDF",
+            "timestamp": "2024-11-06T22:12:11.046",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-28T00:00:00.0000000Z",
+            "invoiceId": "1/111/FS/00644/2024",
+            "purchase_order": "",
+            "vendor_name": "BLS Krzysztof Wyszomirski",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "Onlyvat+500PLN(minusCN)hastobeposted_20241106164054722818h7P2u.PDF",
+            "timestamp": "2024-11-06T22:11:13.503",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-25T00:00:00.0000000Z",
+            "invoiceId": "01547688",
+            "purchase_order": "",
+            "vendor_name": "FedEx®",
+            "subject": "Extraction Validated",
+            "transaction_id": "MultipleCCtosum_20241106164020633098LY7ze.PDF",
+            "timestamp": "2024-11-06T22:10:59.508",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-04T00:00:00.0000000Z",
+            "invoiceId": "0049/09/2024",
+            "purchase_order": 4561474561,
+            "vendor_name": "Fracht\nGROUP\nINTERNATIONAL FREIGHT FORWARDER\nPOLAND",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "fracht_202411061638235986671gzzN.PDF",
+            "timestamp": "2024-11-06T22:08:38.041",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-10T00:00:00.0000000Z",
+            "invoiceId": 2404102290,
+            "purchase_order": "",
+            "vendor_name": "Flint Group",
+            "subject": "Extraction Validated",
+            "transaction_id": "Flint_202411061638108198937kgP7.PDF",
+            "timestamp": "2024-11-06T22:08:25.068",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-07-31T00:00:00.0000000Z",
+            "invoiceId": "DDP936395",
+            "purchase_order": "",
+            "vendor_name": "DHL",
+            "subject": "Extraction Validated",
+            "transaction_id": "DDP936395_20241106163749498203T3lWa.pdf",
+            "timestamp": "2024-11-06T22:08:06.686",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-11T00:00:00.0000000Z",
+            "invoiceId": "BLR054941",
+            "purchase_order": 4561555894,
+            "vendor_name": "DHL Express",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "BLR054941_202411061637291661987K8iD.pdf",
+            "timestamp": "2024-11-06T22:07:38.450",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-24T00:00:00.0000000Z",
+            "invoiceId": "00502548",
+            "purchase_order": 99430710,
+            "vendor_name": "RADISCH\nLasertechnik · Blechbearbeitung",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "12429899999000558_20241106163653343774GDU5z.pdf",
+            "timestamp": "2024-11-06T22:07:03.644",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-30T00:00:00.0000000Z",
+            "invoiceId": ": 24322000000424791618",
+            "purchase_order": "",
+            "vendor_name": "苏州翰泽精密机械有限公司",
+            "subject": "Extraction Validated",
+            "transaction_id": "0888HGES-PO-MultiplePOlines1_202411061636257951550gTwS.PDF",
+            "timestamp": "2024-11-06T22:06:44.378",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-08-07T00:00:00.0000000Z",
+            "invoiceId": 291208532,
+            "purchase_order": "",
+            "vendor_name": "Stahl",
+            "subject": "Extraction Validated",
+            "transaction_id": "2xPO_20241106163556931983oN5wx.PDF",
+            "timestamp": "2024-11-06T22:06:10.126",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-20T00:00:00.0000000Z",
+            "invoiceId": 243814,
+            "purchase_order": 4561548390,
+            "vendor_name": "CNI Kft.",
+            "subject": "Extraction Validated",
+            "transaction_id": "2xLanguages_20241106163542469389EmvsB.PDF",
+            "timestamp": "2024-11-06T22:05:55.855",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-03T00:00:00.0000000Z",
+            "invoiceId": "Man082024-02",
+            "purchase_order": "",
+            "vendor_name": "WHEAT",
+            "subject": "Extraction Validated",
+            "transaction_id": "MAN1-1_20241105154335077386CYea4.pdf",
+            "timestamp": "2024-11-05T21:14:27.784",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-03T00:00:00.0000000Z",
+            "invoiceId": 1550768,
+            "purchase_order": "MAN0099489",
+            "vendor_name": "Sysco",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "MAN4_202411051400380598627Nu31.pdf",
+            "timestamp": "2024-11-05T19:30:50.549",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-18T00:00:00.0000000Z",
+            "invoiceId": "#INV1139649",
+            "purchase_order": "MAN0099939",
+            "vendor_name": "coop | comphy",
+            "subject": "Extraction Validated",
+            "transaction_id": "Exit_AP-000000012207022-CG(readonly)_20241105135944971816swDxj.pdf",
+            "timestamp": "2024-11-05T19:30:06.277",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-08-09T00:00:00.0000000Z",
+            "invoiceId": 5735726,
+            "purchase_order": "MAN0099025",
+            "vendor_name": "SOUTHERN GLAZER'S OF HI\nSIGNATURE FINE WINE & SPIRITS\nCOSTAL PACIFIC WINE & SPIRITS OF HAWAII",
+            "subject": "Extraction Validated",
+            "transaction_id": "Exit_AP-000000012192684-CG(readonly)_20241105135927546696RTdkl.pdf",
+            "timestamp": "2024-11-05T19:30:06.259",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2023-04-21T00:00:00.0000000Z",
+            "invoiceId": "015858517X230421",
+            "purchase_order": "",
+            "vendor_name": "DIRECTV",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "Exit_AP-000000012155060-CG(readonly)_20241105135918888371LHR4Y.pdf",
+            "timestamp": "2024-11-05T19:30:06.217",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-08-31T00:00:00.0000000Z",
+            "invoiceId": 701042,
+            "purchase_order": "",
+            "vendor_name": "Maui\nDisposal",
+            "subject": "Extraction Validated",
+            "transaction_id": "Exit_AP-000000012135266-CG(readonly)_202411051359100021292KTwZ.pdf",
+            "timestamp": "2024-11-05T19:30:06.200",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-07-09T00:00:00.0000000Z",
+            "invoiceId": "068132",
+            "purchase_order": "",
+            "vendor_name": "البياض\nAL BAYYAD",
+            "subject": "Extraction Validated",
+            "transaction_id": "DOH8_20241105131402518247vIA0l.pdf",
+            "timestamp": "2024-11-05T18:44:08.999",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-08-25T00:00:00.0000000Z",
+            "invoiceId": "ETQ-CIN17003469",
+            "purchase_order": 17002518,
+            "vendor_name": "Etisag Technologies(",
+            "subject": "Extraction Validated",
+            "transaction_id": "DOH7_20241105131337625798WMhIW.pdf",
+            "timestamp": "2024-11-05T18:43:53.519",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-02-05T00:00:00.0000000Z",
+            "invoiceId": "IN/STC/0366",
+            "purchase_order": "DOH0415457",
+            "vendor_name": "STEM TRADING AND SERVICES I.L.L",
+            "subject": "Extraction Validated",
+            "transaction_id": "DOH6_20241105131325365000C77ZZ.pdf",
+            "timestamp": "2024-11-05T18:43:39.336",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-08-28T00:00:00.0000000Z",
+            "invoiceId": 10343,
+            "purchase_order": "",
+            "vendor_name": "مخبز الرغيف الساخن\nHOT BREAD BAKERY",
+            "subject": "Extraction Validated",
+            "transaction_id": "DOH5_20241105131301054876zH7tx.pdf",
+            "timestamp": "2024-11-05T18:43:09.478",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-07-17T00:00:00.0000000Z",
+            "invoiceId": "068607",
+            "purchase_order": "DOH0424146",
+            "vendor_name": "البياض\nAL BAYYAD\nمنتج فطرى 100%",
+            "subject": "Extraction Validated",
+            "transaction_id": "DOH4_20241105131250113955plyaM.pdf",
+            "timestamp": "2024-11-05T18:43:05.273",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-07-25T00:00:00.0000000Z",
+            "invoiceId": 365568,
+            "purchase_order": "",
+            "vendor_name": "PATISSERIE SUISSE",
+            "subject": "Extraction Validated",
+            "transaction_id": "DOH2_20241105131226956445Pm4wJ.pdf",
+            "timestamp": "2024-11-05T18:42:51.575",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-07-01T00:00:00.0000000Z",
+            "invoiceId": 361717,
+            "purchase_order": "",
+            "vendor_name": "Patisserie Suisse",
+            "subject": "Extraction Validated",
+            "transaction_id": "DOH1_202411051312164166319tzrt.pdf",
+            "timestamp": "2024-11-05T18:42:24.801",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-03-31T00:00:00.0000000Z",
+            "invoiceId": "MS/IN/2024/777",
+            "purchase_order": "DOH0403560",
+            "vendor_name": "MAS\nSYNERGY",
+            "subject": "Extraction Validated",
+            "transaction_id": "DOH_20241105131206290166BthrQ.pdf",
+            "timestamp": "2024-11-05T18:42:17.118",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-03-01T00:00:00.0000000Z",
+            "invoiceId": 1924786,
+            "purchase_order": "",
+            "vendor_name": "LOGAN METALS",
+            "subject": "Extraction Validated",
+            "transaction_id": "LOGAN_ManualQ_edited_20241030093945859972pxAk7.pdf",
+            "timestamp": "2024-10-30T15:09:59.122",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-03-13T00:00:00.0000000Z",
+            "invoiceId": "134891-123",
+            "purchase_order": "",
+            "vendor_name": "TLE",
+            "subject": "Extraction Validated",
+            "transaction_id": "TLE_edited_20241030093908824489iunLz.pdf",
+            "timestamp": "2024-10-30T15:09:31.307",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-10-10T00:00:00.0000000Z",
+            "invoiceId": "000.049.694",
+            "purchase_order": "",
+            "vendor_name": "DISSAN",
+            "subject": "Extraction Validated",
+            "transaction_id": "7680-49694_20241029141344048065LjuVR.pdf",
+            "timestamp": "2024-10-29T19:44:42.341",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-20T00:00:00.0000000Z",
+            "invoiceId": "24090066-1",
+            "purchase_order": "",
+            "vendor_name": "株式会社 シェフコ\nカ) シェフコ",
+            "subject": "Extraction Validated",
+            "transaction_id": "JP2_20241029140941810635k4hkA.pdf",
+            "timestamp": "2024-10-29T19:39:57.814",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-13T00:00:00.0000000Z",
+            "invoiceId": "ED30777099",
+            "purchase_order": 940249895,
+            "vendor_name": "ManpowerGroup\n萬寶華企業管理顧問股份有限公司",
+            "subject": "Extraction Validated",
+            "transaction_id": "TW1_2024102913494536325628BOl.pdf",
+            "timestamp": "2024-10-29T19:19:52.919",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-12T00:00:00.0000000Z",
+            "invoiceId": "173/24-25",
+            "purchase_order": 3001887334,
+            "vendor_name": "CONVERTER",
+            "subject": "Invoice Data Extracted",
+            "transaction_id": "IN1_20241029134925931923MOaVF.pdf",
+            "timestamp": "2024-10-29T19:19:36.414",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-08-13T00:00:00.0000000Z",
+            "invoiceId": ":24312000000244175134",
+            "purchase_order": ": 3001912850",
+            "vendor_name": "上海美美尚隽印刷有限公司",
+            "subject": "Extraction Validated",
+            "transaction_id": "CN1_20241029134849548276LUvs5.pdf",
+            "timestamp": "2024-10-29T19:19:21.657",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-03T00:00:00.0000000Z",
+            "invoiceId": "0000037530",
+            "purchase_order": 3001915910,
+            "vendor_name": "FAST TOLL MANUFACTURING CORP.",
+            "subject": "Extraction Validated",
+            "transaction_id": "PH1_20241029134506714252OSuO1.pdf",
+            "timestamp": "2024-10-29T19:15:25.109",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-08-31T00:00:00.0000000Z",
+            "invoiceId": "DCL-2408_TS2",
+            "purchase_order": ":3001914623",
+            "vendor_name": "株式会社小野包装",
+            "subject": "Extraction Validated",
+            "transaction_id": "JP1_20241029134445933450jinHj.pdf",
+            "timestamp": "2024-10-29T19:15:14.086",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-08-26T00:00:00.0000000Z",
+            "invoiceId": 203091183653,
+            "purchase_order": "",
+            "vendor_name": "GOBI",
+            "subject": "Extraction Validated",
+            "transaction_id": "17912909_Spanish_20241028140521039758sLlMm.pdf",
+            "timestamp": "2024-10-28T19:36:04.463",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2021-05-02T00:00:00.0000000Z",
+            "invoiceId": 202016982,
+            "purchase_order": "",
+            "vendor_name": "zooplus",
+            "subject": "Extraction Validated",
+            "transaction_id": "PolishInvoice1_2024102813382990005467N1D.pdf",
+            "timestamp": "2024-10-28T19:09:16.860",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-07-03T00:00:00.0000000Z",
+            "invoiceId": "GB4TM54ABEY",
+            "purchase_order": 3000188983,
+            "vendor_name": "amazon business",
+            "subject": "Extraction Validated",
+            "transaction_id": "1918101_20241028091603645103vgy3A.pdf",
+            "timestamp": "2024-10-28T14:46:17.852",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-07-14T00:00:00.0000000Z",
+            "invoiceId": 18126328900,
+            "purchase_order": 9300769015,
+            "vendor_name": "McGuffin Tech Industries Pty Ltd",
+            "subject": "Invoice Posted",
+            "transaction_id": "1SAPA-McGuffin_editedd_20241028083851986187jlTIK.pdf",
+            "timestamp": "2024-10-28T14:09:17.506",
+            "status": "Touchless Processed"
+        },
+        {
+            "invoiceDate": "2024-07-29T00:00:00.0000000Z",
+            "invoiceId": "7129/07555167",
+            "purchase_order": 3000193798,
+            "vendor_name": "RUBIX",
+            "subject": "Extraction Validated",
+            "transaction_id": "7129-07555167_20241028081642957909npCGU.pdf",
+            "timestamp": "2024-10-28T13:47:16.438",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-10T00:00:00.0000000Z",
+            "invoiceId": 812967941833,
+            "purchase_order": "",
+            "vendor_name": "City of Austin's",
+            "subject": "Extraction Validated",
+            "transaction_id": "18009683_20241028080411143755JUnMp.pdf",
+            "timestamp": "2024-10-28T13:34:38.400",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-07T00:00:00.0000000Z",
+            "invoiceId": 313877832009,
+            "purchase_order": "",
+            "vendor_name": "AT&T",
+            "subject": "Extraction Validated",
+            "transaction_id": "18009637_20241028071509715766Y2GxN.pdf",
+            "timestamp": "2024-10-28T12:45:52.672",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-09-13T00:00:00.0000000Z",
+            "invoiceId": "",
+            "purchase_order": "",
+            "vendor_name": "altafiber",
+            "subject": "Extraction Validated",
+            "transaction_id": "18022166_202410280712528108938LF57.pdf",
+            "timestamp": "2024-10-28T12:43:01.924",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-05-13T00:00:00.0000000Z",
+            "invoiceId": 1321139,
+            "purchase_order": "",
+            "vendor_name": "Louis L. Redding City/County Building",
+            "subject": "Extraction Validated",
+            "transaction_id": "18053895_20241028070154210153nYpxK.pdf",
+            "timestamp": "2024-10-28T12:32:25.932",
+            "status": "Moved to Manual Queue"
+        },
+        {
+            "invoiceDate": "2024-03-14T00:00:00.0000000Z",
+            "invoiceId": 401366237,
+            "purchase_order": 4203665812,
+            "vendor_name": "Bullivants",
+            "subject": "Extraction Validated",
+            "transaction_id": "1SAPA-Bullivants_edited_20241028062705861415k3ewT.pdf",
+            "timestamp": "2024-10-28T11:57:57.850",
+            "status": "Under Process"
+        },
+        {
+            "invoiceDate": "2024-03-08T00:00:00.0000000Z",
+            "invoiceId": 1301178,
+            "purchase_order": 4821063588,
+            "vendor_name": "Lawrence\n& Hanson",
+            "subject": "Rejected Invoice/PO/GR Validated",
+            "transaction_id": "1SAPA-Lawrence_edited_20241028061723521864epPsd.pdf",
+            "timestamp": "2024-10-28T11:48:10.038",
+            "status": "Rejected"
+        },
+        {
+            "invoiceDate": "2024-03-08T00:00:00.0000000Z",
+            "invoiceId": 2024263016788,
+            "purchase_order": 3912762156,
+            "vendor_name": "amcor",
+            "subject": "Invoice Posted",
+            "transaction_id": "1SAPA-Amcor_edited_20241028052443193100DwXpg.pdf",
+            "timestamp": "2024-10-28T10:55:32.442",
+            "status": "Touchless Processed"
+        }
+    ],
+    "latestUpdated": "12 Nov 2024, 11:38 am"
+}

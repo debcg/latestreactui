@@ -5,7 +5,7 @@ const FooterComponent = () => {
 
   return (
     <footer className="w-full py-2 bg-sky-50 text-cyan-500 text-sm text-center">
-      © Coppernoi {currentYear}, all rights reserved.
+      © Capgemini {currentYear}, all rights reserved.
     </footer>
   );
 };

@@ -290,10 +290,11 @@ const TouchlessProcessDetailsPage = () => {
   };
   
   const enabledTabs = checkTabDataForEnablement();
+const currentTime = new Date().toLocaleTimeString();
   return (
     <div>
       <div className="flex justify-between">
-        <span style={{ fontSize: "14px", fontWeight: "600" }}>Last Update: 25 Aug 2024, 02:51 PM</span>
+        <span style={{ fontSize: "14px", fontWeight: "600" }}>Last Update: {currentTime}</span>
         <Button className="mr-4" style={{ backgroundColor: "#0070AD", color: "white", fontSize: "12px" }}>Confidence Score</Button>
       </div>
       <div className="flex flex-col md:flex-row h-screen bg-gray-100">

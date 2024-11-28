@@ -294,7 +294,7 @@ const currentTime = new Date().toLocaleTimeString();
   return (
     <div>
       <div className="flex justify-between">
-        <span style={{ fontSize: "14px", fontWeight: "600" }}>Last Update: {currentTime}</span>
+        <span style={{ fontSize: "14px", fontWeight: "600" }}>Last Update: {new Date().toLocaleString(undefined, { dateStyle: 'full', timeStyle: 'medium' })}</span>
         <Button className="mr-4" style={{ backgroundColor: "#0070AD", color: "white", fontSize: "12px" }}>Confidence Score</Button>
       </div>
       <div className="flex flex-col md:flex-row h-screen bg-gray-100">

@@ -1,10 +1,33 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, DatePicker, Input, notification,Card } from "antd";
+import { Table, Button, DatePicker, Input, notification, Card } from "antd";
 import moment from "moment";
-
-const ExtractionTabEdit = ({ onClose, onSave, data }) => {
+import axios from "axios";
+const ExtractionTabEdit = ({ onClose, onSave, data, allData }) => {
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
+
+  const labelMapping = JSON.parse(`{
+  "InvoiceId":"invoice_id","InvoiceDate":"invoice_date","InvoiceTotal":"invoice_amount",
+  "FreightCharges":"freight_amount","TotalTax":"tax_amount",
+  "erp_name":"erp","PurchaseOrder":"purchase_order",
+  "CustomerName":"bill_to_entity","BankAccountNumber":"bank_account",
+  "CurrencyCode":"currency","IBAN": "iban",
+  "VendorName":"vendor_name","VendorTaxId":"vendor_tax"
+}`);
+
+  // Extract fields with false status
+  const fieldsWithFalseStatus = [
+    ...(formData?.extraction_validation?.result?.fields || [])
+      .filter((field) => field.status === "False")
+      .map((field) => field.field),
+    ...(formData?.inv_po_gr_validation?.ValidationMatchingGorulesResult?.result?.fields || [])
+      .filter((field) => field.status === "False")
+      .map((field) => field.field),
+  ];
+
+  // Highlight logic
+  const getHighlightClass = (fieldName) =>
+    fieldsWithFalseStatus.includes(labelMapping[fieldName]) ? "highlight-error" : "";
 
   // Initialize formData with the passed data prop
   useEffect(() => {
@@ -13,19 +36,38 @@ const ExtractionTabEdit = ({ onClose, onSave, data }) => {
     }
   }, [data]);
 
+  // const handleInputChange = (key, value) => {
+  //   const updatedData = { ...formData };
+  //   const keys = key.split(".");
+  //   let temp = updatedData;
+
+  //   keys.forEach((k, index) => {
+  //     if (index === keys.length - 1) {
+  //       temp[k] = value;
+  //     } else {
+  //       temp = temp[k];
+  //     }
+  //   });
+
+  //   setFormData(updatedData);
+  // };
+
   const handleInputChange = (key, value) => {
     const updatedData = { ...formData };
     const keys = key.split(".");
     let temp = updatedData;
-
+  
     keys.forEach((k, index) => {
       if (index === keys.length - 1) {
         temp[k] = value;
       } else {
+        if (!temp[k]) {
+          temp[k] = {}; // Initialize missing object
+        }
         temp = temp[k];
       }
     });
-
+  
     setFormData(updatedData);
   };
 
@@ -33,7 +75,11 @@ const ExtractionTabEdit = ({ onClose, onSave, data }) => {
     const updatedItems = [...(formData?.invoice?.Item || [])];
     if (!updatedItems[index]) return;
 
+    if (!updatedItems[index][key]) {
+      updatedItems[index][key] = {};
+    }
     updatedItems[index][key].Value = value;
+
     setFormData({
       ...formData,
       invoice: {
@@ -43,29 +89,41 @@ const ExtractionTabEdit = ({ onClose, onSave, data }) => {
     });
   };
 
-  const validateFields = () => {
-    const newErrors = {};
+  const handleSave = async () => {
 
-    if (!formData?.invoice?.InvoiceId?.Value) newErrors.invoiceId = "Invoice ID is required.";
-    
-    if (!formData?.invoice?.CustomerTaxId?.Value) newErrors.customerTaxId = "Customer Tax ID is required.";
-   
-    if (!formData.discount) newErrors.discount = "Discount is required.";
-    
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+    try {
+      const response = await axios.post(
+        "https://apa-fa-test-reinsert.azurewebsites.net/api/reinsert",
+        JSON.stringify(allData),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-  const handleSave = () => {
-    if (validateFields()) {
+      // Show success notification if the API call is successful
+      notification.success({
+        message: "Success!",
+        description: "Data submitted successfully.",
+        placement: "top",
+      });
+
       if (onSave) {
-        onSave(formData); // Pass updated data back to the parent
-        notification.success({
-          message: 'Success!',
-          description: 'You have successfully saved the data.',
-          placement: 'top',
-        });
+        onSave(formData); 
       }
+
+      if (onClose) {
+        onClose(); // Close the editable view
+      }
+    } catch (error) {
+      // Handle errors
+      notification.error({
+        message: "Error!",
+        description: "Failed to submit data. Please try again.",
+        placement: "top",
+      });
+      console.error("API call failed: ", error);
     }
   };
   const items = formData?.invoice?.Item || [];
@@ -109,7 +167,7 @@ const ExtractionTabEdit = ({ onClose, onSave, data }) => {
           type="number"
           value={text}
           onChange={(e) =>
-            handleTableInputChange(index, "Quantity", e.target.value)
+            handleTableInputChange(index, "Qty", e.target.value)
           }
         />
       ),
@@ -165,42 +223,15 @@ const ExtractionTabEdit = ({ onClose, onSave, data }) => {
     },
     { title: "Amount", dataIndex: "amount", key: "amount" },
   ];
-// given some condition for high light field
-
-const fieldsWithExtractionFalseStatus = formData?.extraction_validation?.result?.fields
-? formData?.extraction_validation.result.fields.filter(field => field.status === "False").map(field => field.field)
-: [];
-
-const fieldsWithFalseERPStatus = formData?.inv_po_gr_validation?.ValidationMatchingGorulesResult?.result?.fields
-? formData?.inv_po_gr_validation.ValidationMatchingGorulesResult.result.fields
-    .filter(field => field?.status === "False")
-    .map(field => field?.field)
-: [];
-let hilightedFields = [...fieldsWithExtractionFalseStatus, ...fieldsWithFalseERPStatus];
-   
-    hilightedFields.push("InvoiceId");
-    console.log("hilightedFields ===>: "+hilightedFields);
-const lableMapping =`{
-"InvoiceId":"invoice_id","InvoiceDate":"invoice_date","InvoiceTotal":"invoice_amount",
-"FreightCharges":"freight_amount","TotalTax":"tax_amount",
-"erp_name":"erp","PurchaseOrder":"purchase_order",
-"CustomerName":"bill_to_entity","BankAccountNumber":"bank_account",
-"CurrencyCode":"currency","IBAN": "iban",
-"VendorName":"vendor_name","VendorTaxId":"vendor_tax"
-}`;
 
 
-//data
   return (
-    <div
-      style={{
-        padding: "1rem",
-        backgroundColor: "#f9f9f9",
+    <div>
+      <div className="mb-6" style={{
+        backgroundColor: "#ffffff", padding: "1rem",
         borderRadius: "8px",
         marginTop: "1rem",
-      }}
-    >
-      <div className="mb-6">
+      }}>
         <div className="grid grid-cols-3 gap-4">
           <div
             className="col-span-3 font-semibold border-b pb-2 mb-4"
@@ -208,93 +239,144 @@ const lableMapping =`{
           >
             Quick Edit
           </div>
-         
           <div>
-              
-          <label
-              className={hilightedFields !=null && hilightedFields.includes('InvoiceId') ? 'text-red-500' : ''}
-            >
+            <label className={`block font-semibold ${getHighlightClass("InvoiceId")}`}>
               Invoice Id
             </label>
-              <div 
-              className={`input-container ${errors.invoiceId ? "input-error" : ""}`}
-              
-              >
-                <Input
-                  type="number"
-                  placeholder="Enter Invoice Id"
-                  value={formData?.invoice?.InvoiceId?.Value || ""}
-                  onChange={(e) =>
-                    handleInputChange("invoice.InvoiceId.Value", e.target.value)
-                  }
-                 
-                 
-                  className={`${
-                    hilightedFields != null && hilightedFields.includes("InvoiceId")
-                      ? "input-error"
-                      : ""
-                  } ${errors.invoiceId ? "input-error" : ""}`}
-                />
-                {errors.invoiceId && <span className="error-asterisk">*</span>}
-              </div>
-              {errors.invoiceId && <span className="text-red-500">{errors.invoiceId}</span>}
-
+            <div>
+              <Input
+                type="text"
+                placeholder="Enter Invoice Id"
+                value={formData?.invoice?.InvoiceId?.Value || ""}
+                onChange={(e) =>
+                  handleInputChange("invoice.InvoiceId.Value", e.target.value)
+                }
+                className={getHighlightClass("InvoiceId")}
+              />
+              {/* {errors.invoiceId && <span className="error-asterisk">*</span>} */}
             </div>
-
+          </div>
           <div>
-            <label className="block font-semibold">Purchase Order</label>
+            <label className={`block font-semibold ${getHighlightClass("PurchaseOrder")}`}>Purchase Order</label>
             <Input
-              type="number"
+              type="text"
               placeholder="Enter Purchase Order"
-              value={formData?.purchase_order?.OrderId || ""}
+              value={formData?.invoice?.PurchaseOrder?.Value || ""}
               onChange={(e) =>
-                handleInputChange("purchase_order.OrderId", e.target.value)
+                handleInputChange("invoice.PurchaseOrder.Value", e.target.value)
               }
-              className= "no-border"
+              className={getHighlightClass("PurchaseOrder")}
             />
-            {errors.purchaseOrder && (
-              <span className="text-red-500">{errors.purchaseOrder}</span>
-            )}
           </div>
 
           <div>
-            <label className="block font-semibold">Invoice Date</label>
+            <label className={`block font-semibold ${getHighlightClass("InvoiceDate")}`}>
+              Invoice Date
+            </label>
             <DatePicker
-              value={formData?.invoice?.InvoiceDate?.Value
-                ? moment(formData?.invoice?.InvoiceDate?.Value, "DD/MM/YYYY")
-                : null}
-              onChange={(date, dateString) =>
-                handleInputChange("invoice.InvoiceDate.Value", dateString)
+              value={
+                formData?.invoice?.InvoiceDate?.Value
+                  ? moment(formData.invoice.InvoiceDate.Value, "YYYY-MM-DD").isValid()
+                    ? moment(formData.invoice.InvoiceDate.Value, "YYYY-MM-DD") // Convert API date to moment object
+                    : null
+                  : null // Handle null or undefined gracefully
               }
+              onChange={(date, dateString) => {
+                handleInputChange("invoice.InvoiceDate.Value", dateString || null); // Update state with selected date in string format
+              }}
+              format="YYYY-MM-DD" // Ensure format consistency
               style={{ width: "100%" }}
-              className= "no-border"
+              className={getHighlightClass("InvoiceDate")}
             />
-            {errors.invoiceDate && (
-              <span className="text-red-500">{errors.invoiceDate}</span>
-            )}
           </div>
 
+
+
           <div>
-            <label className="block font-semibold">Customer Tax Id</label>
-            <div className={`input-container ${errors.CustomerTaxId ? "input-error" : ""}`}>
+            <label className={`block font-semibold ${getHighlightClass("InvoiceTotal")}`}>Invoice Total</label>
             <Input
-              type="number"
-              placeholder="Enter Customer Tax Id"
-              value={formData?.invoice?.CustomerTaxId?.Value || ""}
-              onChange={(e) =>
-                handleInputChange("invoice.CustomerTaxId.Value", e.target.value)
-              }
-              
-              className={`no-border ${errors.CustomerTaxId ? "input-error" : ""}`}
+              type="text"
+              placeholder="Enter Invoice Total"
+              value={formData?.invoice?.InvoiceTotal?.Value?.amount || ""}
+              onChange={(e) => handleInputChange("invoice.InvoiceTotal.Value.amount", e.target.value)}
+              className={getHighlightClass("InvoiceTotal")}
             />
-            {errors.CustomerTaxId && <span className="error-asterisk">*</span>}
-            </div>
-            
-            {errors.CustomerTaxId && <span className="text-red-500">{errors.CustomerTaxId}</span>}
           </div>
 
           <div>
-            <label className="block font-semibold">Vendor Name</label>
+            <label className={`block font-semibold ${getHighlightClass("FreightCharges")}`}>
+              Freight Charges
+            </label>
+            <Input
+              type="text"
+              placeholder="Enter Freight Charges"
+              value={formData?.Hilighted_fields?.freight_amount || ""}
+              onChange={(e) => handleInputChange("Hilighted_fields.freight_amount", e.target.value)}
+              className={getHighlightClass("FreightCharges")}
+            />
+          </div>
+
+          <div>
+            <label className={`block font-semibold ${getHighlightClass("erp_name")}`}>Erp Name</label>
+            <Input
+              type="text"
+              placeholder="Enter Erp Name"
+              value={formData?.invoice?.erp_name || ""}
+              onChange={(e) =>
+                handleInputChange("invoice.erp_name", e.target.value)
+              }
+              className={getHighlightClass("erp_name")}
+            />
+          </div>
+
+          <div>
+            <label className={`block font-semibold ${getHighlightClass("CustomerName")}`}>Customer Name</label>
+            <Input
+              type="text"
+              placeholder="Enter Customer Name"
+              value={formData?.invoice?.CustomerName.Value || ""}
+              onChange={(e) =>
+                handleInputChange("invoice.CustomerName.Value", e.target.value)
+              }
+              className={getHighlightClass("CustomerName")}
+            />
+          </div>
+
+          <div>
+            <label className={`block font-semibold ${getHighlightClass("CustomerTaxId")}`}>Customer Tax Id</label>
+            <div>
+              <Input
+                type="text"
+                placeholder="Enter Customer Tax Id"
+                value={formData?.invoice?.CustomerTaxId?.Value || ""}
+                onChange={(e) =>
+                  handleInputChange("invoice.CustomerTaxId.Value", e.target.value)
+                }
+                className={getHighlightClass("CustomerTaxId")}
+              />
+
+            </div>
+          </div>
+
+          <div>
+            <label className={`block font-semibold ${getHighlightClass("IBAN")}`}>IBAN</label>
+            <Input
+              type="text"
+              placeholder="Enter IBAN"
+              value={formData?.invoice?.IBAN?.Value || ""}
+              onChange={(e) => {
+                const updatedFormData = { ...formData };
+                if (!updatedFormData.invoice) updatedFormData.invoice = {};
+                if (!updatedFormData.invoice.IBAN) updatedFormData.invoice.IBAN = {};
+                updatedFormData.invoice.IBAN.Value = e.target.value;
+                setFormData(updatedFormData);
+              }}
+              className={getHighlightClass("IBAN")}
+            />
+          </div>
+
+          <div>
+            <label className={`block font-semibold ${getHighlightClass("VendorName")}`}>Vendor Name</label>
             <Input
               type="text"
               placeholder="Enter Vendor Name"
@@ -302,75 +384,49 @@ const lableMapping =`{
               onChange={(e) =>
                 handleInputChange("invoice.VendorName.Value", e.target.value)
               }
-              className= "no-border"
+              className={getHighlightClass("VendorName")}
             />
-            {errors.vendorName && (
-              <span className="text-red-500">{errors.vendorName}</span>
-            )}
           </div>
 
           <div>
-            <label className="block font-semibold">Vendor Tax Id</label>
+            <label className={`block font-semibold ${getHighlightClass("VendorTaxId")}`}>Vendor Tax Id</label>
             <Input
-              type="number"
+              type="text"
               placeholder="Enter Vendor Tax Id"
               value={formData?.invoice?.VendorTaxId?.Value || ""}
               onChange={(e) =>
                 handleInputChange("invoice.VendorTaxId.Value", e.target.value)
               }
-              className= "no-border"
+              className={getHighlightClass("VendorTaxId")}
             />
-            {errors.vendorTaxId && (
-              <span className="text-red-500">{errors.vendorTaxId}</span>
-            )}
           </div>
 
           <div>
-            <label className="block font-semibold">Currency Code</label>
+            <label className={`block font-semibold ${getHighlightClass("CurrencyCode")}`}>Currency Code</label>
             <Input
               type="text"
               placeholder="Enter Currency Code"
               value={formData?.invoice?.CurrencyCode?.Value || ""}
               onChange={(e) => handleInputChange("invoice.CurrencyCode.Value", e.target.value)}
-              className= "no-border"
+              className={getHighlightClass("CurrencyCode")}
             />
-            {errors.currencyCode && (
-              <span className="text-red-500">{errors.currencyCode}</span>
-            )}
-            
           </div>
 
           <div>
-            <label className="block font-semibold">Discount</label>
+            <label className={`block font-semibold ${getHighlightClass("Discount")}`}>Discount</label>
             <div className={`input-container ${errors.discount ? "input-error" : ""}`}>
-            <Input
-              type="number"
-              placeholder="Enter Discount"
-              value={formData.discount || ""}
-              onChange={(e) => handleInputChange("discount", e.target.value)}
-              className={`no-border ${errors.discount ? "input-error" : ""}`}
+              <Input
+                type="text"
+                placeholder="Enter Discount"
+                value={formData.discount || ""}
+                onChange={(e) => handleInputChange("discount", e.target.value)}
+                className={getHighlightClass("Discount")}
               />
-              {errors.discount && <span className="error-asterisk">*</span>}
             </div>
-            {errors.discount && <span className="text-red-500">{errors.discount}</span>}
           </div>
 
           <div>
-            <label className="block font-semibold">Invoice Total</label>
-            <Input
-              type="number"
-              placeholder="Enter Invoice Total"
-              value={formData?.invoice?.InvoiceTotal?.Value?.amount || ""}
-              onChange={(e) => handleInputChange("invoice.InvoiceTotal.Value.amount", e.target.value)}
-              className= "no-border"
-            />
-            {errors.invoiceTotal && (
-              <span className="text-red-500">{errors.invoiceTotal}</span>
-            )}
-          </div>
-
-          <div>
-            <label className="block font-semibold">Bank Account Number</label>
+            <label className={`block font-semibold ${getHighlightClass("BankAccountNumber")}`}>Bank Account Number</label>
             <Input
               type="number"
               placeholder="Enter Bank Account Number"
@@ -378,30 +434,28 @@ const lableMapping =`{
               onChange={(e) =>
                 handleInputChange("invoice.BankAccountNumber.Value", e.target.value)
               }
-              className= "no-border"
+              className={getHighlightClass("BankAccountNumber")}
             />
-            {errors.bankAccountNumber && (
-              <span className="text-red-500">{errors.bankAccountNumber}</span>
-            )}
           </div>
 
           <div>
-            <label className="block font-semibold">Total Tax</label>
+            <label className={`block font-semibold ${getHighlightClass("TotalTax")}`}>Total Tax</label>
             <Input
-              type="number"
+              type="text"
               placeholder="Enter Total Tax"
               value={formData?.invoice?.TotalTax?.Value?.amount || ""}
               onChange={(e) => handleInputChange("invoice.TotalTax.Value.amount", e.target.value)}
-              className= "no-border"
+              className={getHighlightClass("TotalTax")}
             />
-            {errors.totalTax && (
-              <span className="text-red-500">{errors.totalTax}</span>
-            )}
           </div>
         </div>
       </div>
 
-      <div>
+      <div className="editTable-container" style={{
+        backgroundColor: "#ffffff", padding: "1rem",
+        borderRadius: "8px",
+        marginTop: "1rem",
+      }}>
         <Card>
           <h3 className="text-lg font-semibold mb-2" style={{ color: "#B02727" }}>Items</h3>
           <Table
@@ -411,14 +465,16 @@ const lableMapping =`{
             scroll={{ x: true }}
           />
         </Card>
+        <div className="text-right">
+          <Button type="primary" onClick={handleSave} style={{ marginTop: "15px", backgroundColor: "#0070AD" }}>
+            Submit
+          </Button>
+
+        </div>
+
       </div>
 
-      <div className="text-right">
-        <Button type="primary" onClick={handleSave} style={{marginTop:"15px", backgroundColor:"#0070AD" }}>
-          Submit
-        </Button>
 
-      </div>
     </div>
   );
 };

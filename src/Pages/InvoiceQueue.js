@@ -13,7 +13,9 @@ const getStatusColor = (status) => {
     "Under Process": "#12ABDB",
     "Extraction Validated": "#ECA336",
     "New Invoice": "#F1A4A4",
-    "Moved to Manual Queue": "#FF6347"
+    "Moved to Manual Queue": "#FF6347",
+    "Touchless Processed":"#00E096",
+    "Rejected":"#fecaca99"
   };
   return colors[status] || "#d9d9d9";
 };
@@ -41,6 +43,35 @@ const InvoiceQueue = () => {
   const fetchCalled = useRef(false); // To prevent double API call
   const navigate = useNavigate();
 
+  function convertToDateFormat(isoString) {
+    const date = new Date(isoString);
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const year = date.getUTCFullYear();
+    return `${day}-${month}-${year}`;
+  }
+  const isoToDateTime = (isoString) => {
+  try {
+    // Convert ISO string to a Date object
+    const date = new Date(isoString);
+ 
+    // Extract date and time components
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const year = date.getFullYear();
+ 
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+ 
+    // Format as "DD-MM-YYYY HH:mm:ss"
+    return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+  } catch (error) {
+    console.error("Error converting ISO to date-time:", error);
+    return "Invalid ISO Date";
+  }
+};
+
   useEffect(() => {
     // Ensure fetch only happens once
     if (fetchCalled.current) return;
@@ -61,12 +92,9 @@ const InvoiceQueue = () => {
     
         if (response.ok) {
           const result = await response.json();
-    
-          // Filter for records where the status is "Under Process"
-          const manualQueueData = result.filter((item) => item.status === "Moved to Manual Queue");
-    
-          setData(manualQueueData || []);
-          setFilteredData(manualQueueData || []);
+          // Remove the filtering and set all data directly
+          setData(result || []);
+          setFilteredData(result || []);
         } else {
           message.error("Failed to fetch data.");
         }
@@ -137,6 +165,7 @@ const InvoiceQueue = () => {
       title: "Invoice Date",
       dataIndex: "invoiceDate",
       sorter: true,
+      render: (invoiceDate) => <span className="whitespace-nowrap">{convertToDateFormat(invoiceDate)}</span>,
     },
     {
       title: "Invoice ID",
@@ -186,7 +215,7 @@ const InvoiceQueue = () => {
       title: "Time Stamp",
       dataIndex: "timestamp",
       sorter: true,
-      render: (timestamp) => <span className="whitespace-nowrap">{timestamp}</span>,
+      render: (timestamp) => <span className="whitespace-nowrap">{isoToDateTime(timestamp)}</span>,
     },
     {
       title: "Action",

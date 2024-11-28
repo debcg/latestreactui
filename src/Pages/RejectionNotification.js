@@ -7,7 +7,7 @@ const RejectionNotification = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   
-  const initialMessage = `Dear Supplier,\n\nPlease be informed that attached invoice 779120234577 has been received but we are not able to process it as PO number information is missing from the invoice copy. Please re-send the connected invoice copy to enable processing and payment.\n\nBest Regards,\nService Desk`;
+  const initialMessage = `Dear Suplier,\n\nPlease be informed that attached invoice 779120234577 has been received but we are not able to process it as PO number information is missing from the invoice copy. Please re-send the connected invoice copy to enable processing and payment.\n\nBest Regards,\nService Desk`;
   
   const [message, setMessage] = useState(initialMessage);
 

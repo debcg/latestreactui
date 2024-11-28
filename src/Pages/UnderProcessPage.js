@@ -40,6 +40,7 @@ const UnderProcessPage = () => {
   const [dateRange, setDateRange] = useState(null);
   const fetchCalled = useRef(false); // To prevent double API call
   const navigate = useNavigate();
+
   function convertToDateFormat(isoString) {
     const date = new Date(isoString);
     const day = String(date.getUTCDate()).padStart(2, '0');
@@ -47,12 +48,35 @@ const UnderProcessPage = () => {
     const year = date.getUTCFullYear();
     return `${day}-${month}-${year}`;
   }
+
+  const isoToDateTime = (isoString) => {
+    try {
+      // Convert ISO string to a Date object
+      const date = new Date(isoString);
+   
+      // Extract date and time components
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+      const year = date.getFullYear();
+   
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      const seconds = String(date.getSeconds()).padStart(2, '0');
+   
+      // Format as "DD-MM-YYYY HH:mm:ss"
+      return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+    } catch (error) {
+      console.error("Error converting ISO to date-time:", error);
+      return "Invalid ISO Date";
+    }
+  };
+
   useEffect(() => {
     // Ensure fetch only happens once
     if (fetchCalled.current) return;
     fetchCalled.current = true; // Set ref to true after the first fetch
 
-    const fetchData = async () => {
+    const fetchData = async (transactionId) => {
       setLoading(true);
       try {
         const response = await fetch('https://p2p-ui-invoice-handle.azurewebsites.net/api/get_invoices_table', {
@@ -61,7 +85,7 @@ const UnderProcessPage = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            "transactionId": "GB4W96XABEY_20241113084053404474G0FQE.pdf",
+            transaction_id : transactionId, 
           }),
         });
     
@@ -196,7 +220,7 @@ const UnderProcessPage = () => {
       title: "Time Stamp",
       dataIndex: "timestamp",
       sorter: true,
-      render: (timestamp) => <span className="whitespace-nowrap">{timestamp}</span>,
+      render: (timestamp) => <span className="whitespace-nowrap">{isoToDateTime(timestamp)}</span>,
     },
     {
       title: "Action",
@@ -205,7 +229,8 @@ const UnderProcessPage = () => {
         <Button
           type="primary"
           size="small"
-          onClick={() => handleViewClick(record.invoiceId)}
+          // onClick={() => handleViewClick(record.invoiceId)}
+          onClick={() => handleViewClick(record)} 
           style={{ background: "#0070AD", fontWeight: 500 }}
         >
           <ArrowUpOutlined style={{ transform: "rotate(45deg)", fontSize: "16px" }} />
@@ -214,10 +239,15 @@ const UnderProcessPage = () => {
     },
   ];
 
-  const handleViewClick = (invoiceId) => {
-    navigate(`/invoice-queue/touchless-processed/${invoiceId}`);
-  };
+  // const handleViewClick = (invoiceId) => {
+  //   navigate(`/invoice-queue/touchless-processed/${invoiceId}`);
+  // };
 
+  const handleViewClick = (record) => {
+    navigate(`/invoice-queue/touchless-processed/${record.invoiceId}`, {
+      state: { record }, 
+    });
+  };
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">

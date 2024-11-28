@@ -49,6 +49,7 @@ const ManualQueuePage = () => {
     const year = date.getUTCFullYear();
     return `${day}-${month}-${year}`;
   }
+  
   const isoToDateTime = (isoString) => {
   try {
     // Convert ISO string to a Date object
@@ -75,16 +76,16 @@ const ManualQueuePage = () => {
     if (fetchCalled.current) return;
     fetchCalled.current = true; // Set ref to true after the first fetch
 
-    const fetchData = async () => {
+    const fetchData = async (transactionId) => {
       setLoading(true);
       try {
-        const response = await fetch('https://p2p-ui-invoice-handle.azurewebsites.net/api/get_invoices_table', {
+        const response = await fetch('https://new-ui-funcapp-test.azurewebsites.net/api/get_invoices_table', {
           method: "POST",
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            "transactionId": "GB4W96XABEY_20241113084053404474G0FQE.pdf",
+            // transaction_id: transactionId,
           }),
         });
     
@@ -96,7 +97,7 @@ const ManualQueuePage = () => {
           const formattedData = manualQueueData.map((item) => ({
             ...item,
             invoiceDate: convertToDateFormat(item.invoiceDate),
-            reason: "Validation Failed",
+            // reason: "Validation Failed",
           }));
           setData(formattedData || []);
           setFilteredData(formattedData || []);
@@ -113,6 +114,8 @@ const ManualQueuePage = () => {
 
     fetchData();
   }, []);
+
+
 
   useEffect(() => {
     const filtered = data.filter((item) => {
@@ -224,6 +227,7 @@ const ManualQueuePage = () => {
     {
       title: "Reason",
       dataIndex: "reason",
+      sorter: true,
       render: (reason) => <span>{reason}</span>,
     },
     {
@@ -233,7 +237,7 @@ const ManualQueuePage = () => {
         <Button
           type="primary"
           size="small"
-          onClick={() => handleViewClick(record.invoiceId)}
+          onClick={() => handleViewClick(record)}
           style={{ background: "#0070AD", fontWeight: 500 }}
         >
           <ArrowUpOutlined style={{ transform: "rotate(45deg)", fontSize: "16px" }} />
@@ -242,9 +246,16 @@ const ManualQueuePage = () => {
     },
   ];
 
-  const handleViewClick = (invoiceId) => {
-    navigate(`/invoice-queue/touchless-processed/${invoiceId}`);
+  // const handleViewClick = (invoiceId) => {
+  //   navigate(`/invoice-queue/touchless-processed/${invoiceId}`);
+  // };
+  
+  const handleViewClick = (record) => {
+    navigate(`/invoice-queue/touchless-processed/${record.invoiceId}`, {
+      state: { record }, 
+    });
   };
+
 
   return (
     <div className="p-4">

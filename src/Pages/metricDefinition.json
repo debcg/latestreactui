@@ -1,0 +1,72 @@
+[
+    {
+        "parameter": "Total Number of Invoices received",
+        "Definition": "The total count of all invoices received within a specific time frame.",
+        "CalculationLogic": "Count of invoices by D/W/M"
+    },
+    {
+        "parameter": "Invoices Processed",
+        "Definition": "Count of invoices that have been received, indexed, approved and posted into the financial system for payment within a specific period.",
+        "CalculationLogic": "Count of invoices posted in SAP by D/M/W + Number of invoices returned back to vendor"
+    },
+    {
+        "parameter": "Touchless Processing by volume",
+        "Definition": "Number of invoices processed automatically without any human intervention.",
+        "CalculationLogic": "Count of invoices posted automatically out of total number of invoices processed"
+    },
+    {
+        "parameter": "Touchless Invoice Processing %",
+        "Definition": "Percentage of total invoices that are processed automatically without human intervention.",
+        "CalculationLogic": "Count of invoices posted automatically + rejected automatically / total number of invoices processed"
+    },
+    {
+        "parameter": "Invoice Sent to Manual Queue",
+        "Definition": "Number of invoices that require human review and are directed to a manual processing queue.",
+        "CalculationLogic": "Count of invoices requiring Manual intervention"
+    },
+    {
+        "parameter": "Invoices Rejected- Sent to Vendor/ PO Owner",
+        "Definition": "Number of invoices that were not accepted due to issues or discrepancies and were returned to the vendor or purchase order owner for correction",
+        "CalculationLogic": "Count of invoices rejected and sent back"
+    },
+    {
+        "parameter": "Invoices by Status – Complete/ In progress/ Rejected/ Sent to Manual Queue as a Doughnut Chart",
+        "Definition": "A visual representation that categorizes invoices based on their current processing status. The chart segments include invoices that are complete, in progress, rejected, or sent to a manual queue.",
+        "CalculationLogic": "Count of invoices by status"
+    },
+    {
+        "parameter": "Invoices Pending Approval – Placeholder as this is for NON PO Invoices",
+        "Definition": "A category that indicates invoices awaiting approval, specifically applicable to non-purchase order (NON PO) invoices.  Helps track and manage the approval process for such invoices.",
+        "CalculationLogic": "Count of invoices sent for Approval"
+    },
+    {
+        "parameter": "Invoices Pending GR – Placeholder as will require more data from SAP",
+        "Definition": "Invoices Pending GR- refers awaiting confirmation of goods receipt (GR) in SAP. Until GR is confirmed, these invoices remain in a pending state, requiring additional SAP data for processing.",
+        "CalculationLogic": "Count of invoices in hold status pending GR completion"
+    },
+    {
+        "parameter": "Invoices by PO/ NON PO split – by % split",
+        "Definition": "It categorizes invoices based on whether they align with purchase orders (PO) or not, showing the percentage breakdown of each category.",
+        "CalculationLogic": "Count of PO vs Non PO invoices respectively"
+    },
+    {
+        "parameter": "Pie chart for rejected invoices by Reason",
+        "Definition": "It displays reasons for invoice rejections using slices proportional to each reason's percentage, offering a visual summary of rejection causes.",
+        "CalculationLogic": "Count of invoices by rejection reason"
+    },
+    {
+        "parameter": "Invoices by 2 Way match/ 3 Way match % split",
+        "Definition": "It categorizes invoices based on whether they match purchase orders alone (2-way match) or with both purchase orders and goods receipts (3-way match), showing the percentage split of each category.",
+        "CalculationLogic": "Count of invoices processed as 2 way match and 3 way match respectively"
+    },
+    {
+        "parameter": "Extraction Accuracy %",
+        "Definition": "Calculate the percentage of accurately extracted data from documents or systems, indicating the precision of information retrieval processes.",
+        "CalculationLogic": ""
+    },
+    {
+        "parameter": "Aged Invoices (compared to SLA within which they should have gotten processed)",
+        "Definition": "The invoices that have exceeded the agreed-upon Service Level Agreement (SLA) timeframe for processing.",
+        "CalculationLogic": ""
+    }
+]

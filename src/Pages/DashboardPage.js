@@ -25,75 +25,55 @@ import {
 import { DatePicker } from "antd";
 import cn from "classnames";
 import styles from "./DashboardPage.module.css";
-
-
-function getNowTime() {
-	return new Date().toLocaleString('en-IN', {
-		timeZone: 'Asia/Kolkata',
-		year: 'numeric',
-		month: 'short',
-		day: 'numeric',
-		hour: '2-digit',
-		minute: '2-digit',
-		hour12: true
-	});
-}
-
 const DashboardPage = () => {
 // start
 
 const [loading, setLoading] = useState(false);
-const [dasdata, setDasData] = useState(null);
-const [lastUpdated, setLastUpdated] = useState(null);
+  const [dasdata, setDasData] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(null);
 
   // Helper function to get current time
   const getNowTime = () => new Date().toISOString();
 
   // Fetch function to hit the API
   const fetchInvoicesMetrics = async ({ startDate, endDate }) => {
-    setLoading(true);
+    setLoading(true); // Set loading to true before fetching
     try {
-      const response = await axios.post(
-        'https://p2p-fa-test-reactdashboardapi.azurewebsites.net/api/dashboard_api?code=cy3algeeyeCvoiyKA_SXxslmuLYUAFuf2UMEJKnbTFZ9AzFuqyIwLQ%3D%3D',
-        {
-          start_date: startDate,
-          end_date: endDate,
-        },
+      const response = await axios.get(
+        `https://p2p-ui-invoice-handle.azurewebsites.net/api/queueTable?dashboard=true&startDate=${startDate}&endDate=${endDate}`,
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-  
-      console.log(response.data);
-  
-      setDasData(response.data); // Save API response in state
-      setLastUpdated(getNowTime()); // Update last fetched time
+
+      setDasData(response.data); // Set fetched data in state
+      setLastUpdated(getNowTime()); // Update the last updated time
     } catch (error) {
       console.error("Error fetching data:", error.message);
     } finally {
-      setLoading(false);
+      setLoading(false); // Set loading to false after fetching is complete
     }
   };
 
-     
-
   // useEffect to fetch data when the component mounts
   useEffect(() => {
+    // Define date range (can be dynamic based on your logic)
+    const dateRange = {
+      start: "2023-01-01",
+      end: "2023-12-31",
+    };
+
+    // Fetch data when the component mounts and check if data exists to prevent re-fetch
     if (!dasdata) {
-      const dateRange = {
-        start: "2024-11-25T00:00:00",
-        end: "2024-11-27T23:59:59",
-      };
-  
       fetchInvoicesMetrics({
         startDate: dateRange.start,
         endDate: dateRange.end,
       });
     }
+    
   }, [dasdata]);
-
 
 
 
@@ -107,13 +87,13 @@ const [lastUpdated, setLastUpdated] = useState(null);
   ];
   const COLORS = ["#00E096", "#F9CF4A", "#ECA336", "#E76262"];
   const invoicesSplitData = [
-    { name: "PO", value: dasdata?.pocount, color: "#12ABDB" },
-    { name: "Non-PO", value: dasdata?.nonpocount, color: "#F9CF4A" },
+    { name: "PO", value: 70, color: "#12ABDB" },
+    { name: "Non-PO", value: 30, color: "#F9CF4A" },
   ];
 
   const poInvoiceWaySplitData = [
-    { name: "Two Way", value: dasdata?.twowayresult, color: "#12ABDB" },
-    { name: "Three Way", value: dasdata?.threewayresult, color: "#00E096" },
+    { name: "Two Way", value: 38, color: "#12ABDB" },
+    { name: "Three Way", value: 32, color: "#00E096" },
   ];
   const CustomLabel = ({ x, y, value, width }) => (
     <g transform={`translate(${x + width + 10}, ${y - 10})`}>
@@ -145,10 +125,10 @@ const [lastUpdated, setLastUpdated] = useState(null);
     { name: "Remaining", value: 33 },
   ];
 
-  const handleDateChange = (dates, dateStrings) => {
-    console.log("Selected dates: ", dates);
-    console.log("Formatted date strings: ", dateStrings);
-  };
+  // const handleDateChange = (dates, dateStrings) => {
+  //   console.log("Selected dates: ", dates);
+  //   console.log("Formatted date strings: ", dateStrings);
+  // };
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
@@ -185,7 +165,7 @@ const [lastUpdated, setLastUpdated] = useState(null);
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
         <p className="text-sm text-gray-500">
-          lastUpdated : getNowTime();
+          Last Updated: 25 Aug 2024, 02:51 PM
         </p>
         <div className="flex items-center">
         <button className="text-white px-4 py-2 rounded-lg flex items-center mr-4" style={{ backgroundColor: "#0070AD" }}>
@@ -209,20 +189,20 @@ const [lastUpdated, setLastUpdated] = useState(null);
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
-      <StatCard
-        title="Total Invoices Received"
-        value={dasdata?.totalinvoicesreceived || 0}
-        icon={<FileText className="text-blue-500" />}
-      />
         <StatCard
-        title="Touchless Processed"
-        value={dasdata?.touchlesprocessed || 0}
-        icon={<Clock className="text-yellow-500" />}
-      />
+          title="Total Invoices Received"
+          value="121"
+          icon={<FileText className="text-blue-500" />}
+        />
+        <StatCard
+          title="Touchless Processed"
+          value="75"
+          icon={<CheckCircle className="text-green-500" />}
+        />
         <StatCard
           title="Under Process"
-          value="11"
-          icon={<MoveRight className="text-purple-500" />}
+          value="100"
+          icon={<Clock className="text-yellow-500" />}
         />
         <StatCard
           title="Moved to Manual Queue"
@@ -273,7 +253,7 @@ const [lastUpdated, setLastUpdated] = useState(null);
               className="absolute transform -translate-x-1/2 -translate-y-1/2"
               style={{ left: "43.5%", top:"63%" }}
             >
-              <p className="text-2xl font-bold">{dasdata?.totalinvoicesreceived || 0}</p>
+              <p className="text-2xl font-bold">121</p>
               <div className="text-xs mt-24 text-center">
                 Dated: 18.08.2024 - 25.08.2024
               </div>
@@ -370,11 +350,11 @@ const [lastUpdated, setLastUpdated] = useState(null);
             <div className="flex flex-row gap-6 mt-4 justify-center">
               <div className="flex items-center">
               <div className="w-6 h-3 rounded-full mr-2" style={{ backgroundColor: '#12ABDB' }} />
-                <span className="text-sm text-gray-600">PO [ {dasdata?.pocount || 0} ]</span>
+                <span className="text-sm text-gray-600">PO </span>
               </div>
               <div className="flex items-center">
                 <div className="w-6 h-3 rounded-full bg-amber-400 mr-2" />
-                <span className="text-sm text-gray-600">Non-PO [ {dasdata?.nonpocount || 0} ]</span>
+                <span className="text-sm text-gray-600">Non-PO</span>
               </div>
             </div>
           </div>
@@ -452,7 +432,7 @@ const [lastUpdated, setLastUpdated] = useState(null);
                 dominantBaseline="middle"
                 className="text-2xl font-bold"
               >
-                {dasdata?.touchlesspercentage || 0}
+                67%
               </text>
             </PieChart>
           </ResponsiveContainer>

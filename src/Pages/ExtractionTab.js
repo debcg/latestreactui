@@ -3,7 +3,7 @@ import { Card, Table, Row, Col } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import ExtractionTabEdit from "./ExtractionTabEdit";
 
-const ExtractionTab = ({ extractionData }) => {
+const ExtractionTab = ({ extractionData, recordData }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
 
@@ -19,8 +19,6 @@ const ExtractionTab = ({ extractionData }) => {
 
   const invoice = selectedData?.invoice || {};
 
-  // Accessing invoice and items data from the provided extractionData
-  // const invoice = data?.invoice || {};
   const items = invoice?.Item || [];
 
   // Preparing table data source
@@ -94,7 +92,11 @@ const ExtractionTab = ({ extractionData }) => {
     setSelectedData(updatedData);
     setIsEditing(false);
   };
-  // const isEditable = selectedData?.status === "Moved to Manual Queue";
+  const handleClose = () => {
+    setIsEditing(false); 
+  };
+  const isEditable = recordData?.status === "Moved to Manual Queue";
+
   return (
     <div className="rounded-lg">
       {/* Header Section */}
@@ -114,19 +116,19 @@ const ExtractionTab = ({ extractionData }) => {
             <p>Monday 28 October, 2024 at 12:45:09 pm</p>
           </div>
           <div>
-            {/* {isEditable && ( */}
+            {isEditable && (
               <EditOutlined
                 style={{ cursor: "pointer", color: "#0070AD" }}
                 onClick={() => setIsEditing(!isEditing)}
               />
-            {/* )} */}
+            )}
           </div>
         </div>
       </Card>
 
       {/* Edit Mode */}
       {isEditing ? (
-        <ExtractionTabEdit data={selectedData} onSave={handleSave} onClose={() => setIsEditing(false)} />
+        <ExtractionTabEdit data={selectedData} allData={extractionData} onSave={handleSave} onClose={handleClose} />
       ) : (
         <>
           {/* Invoice and Vendor Details in One Row */}
@@ -255,7 +257,7 @@ const ExtractionTab = ({ extractionData }) => {
 
 
           {/* Items Table */}
-          <div className="p-2">
+          <div>
             <Card>
               <h3 className="mb-2" style={{ color: "#B02727" }}>Items</h3>
               <Table

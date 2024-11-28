@@ -80,7 +80,7 @@ const ErpDataTab = ({ erpData }) => {
   ];
 
   return (
-    <div style={{ padding: '20px' }} className="erp-container">
+    <div className="erp-container">
       <Card>
         <Tabs defaultActiveKey="1">
           <TabPane tab={<Button>PO</Button>} key="1">
@@ -95,18 +95,19 @@ const ErpDataTab = ({ erpData }) => {
                   <div>
                     <strong>Sub Total</strong>
                     <p>Amount: {purchaseOrder?.PODetail?.SubTotal?.Amount || 0}</p>
-                    <p>Currency Code: {purchaseOrder?.PODetail?.SubTotal?.CurrencyCode || "N/A"}</p>
+                    <p>Currency Code: {purchaseOrder?.PODetail?.CurrencyCode || "N/A"}</p>
                   </div>
                   <div>
                     <strong>Total Tax</strong>
                     <p>Amount: {purchaseOrder?.PODetail?.TotalTax?.Amount || 0}</p>
-                    <p>Currency Code: {purchaseOrder?.PODetail?.TotalTax?.CurrencyCode || "N/A"}</p>
+                    <p>Currency Code: {purchaseOrder?.PODetail?.CurrencyCode || "N/A"}</p>
                   </div>
                   <div>
                     <strong>Grand Total</strong>
                     <p>Amount: {purchaseOrder?.PODetail?.GrandTotal?.Amount || 0}</p>
-                    <p>Currency Code: {purchaseOrder?.PODetail?.GrandTotal?.CurrencyCode || "N/A"}</p>
+                    <p>Currency Code: {purchaseOrder?.PODetail?.CurrencyCode || "N/A"}</p>
                   </div>
+                  
                 </div>
               </Card>
               <Card>

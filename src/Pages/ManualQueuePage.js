@@ -256,12 +256,13 @@ const ManualQueuePage = () => {
     });
   };
 
-
+const currentTime = new Date().toLocaleTimeString();
   return (
+    
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2 font-bold">
-          Last Updated: 25 Aug 2024, 02:51 PM
+          Last Updated: {currentTime}
         </h1>
         <Space>
           <Upload

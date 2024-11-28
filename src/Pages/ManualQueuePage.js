@@ -262,7 +262,7 @@ const currentTime = new Date().toLocaleTimeString();
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2 font-bold">
-          Last Updated: {currentTime}
+          Last Updated: {new Date().toLocaleString(undefined, { dateStyle: 'full', timeStyle: 'medium' })}
         </h1>
         <Space>
           <Upload

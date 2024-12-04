@@ -1,0 +1,121 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.ant-menu-light .ant-menu-item-selected{
+  background-color: #0070AD;
+  
+}
+.ant-menu-light .ant-menu-item-selected .ant-menu-item-icon{
+  color: #fff;
+}
+
+
+/* .input-error {
+  border-left: 1px solid #B02727;
+  border-bottom: 1px solid #B02727;
+} */
+.highlight-error {
+  color: #C86868;
+  border-color: #C86868 !important;
+}
+.input-container {
+  position: relative;
+}
+
+.error-asterisk {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  color: #C86868;
+  font-size: 12px;
+  font-weight: bold;
+}
+.no-border{
+  border: none;
+}
+
+.erp-container .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn .ant-btn-variant-outlined{
+  background: #0070AD ;
+  color: white;
+  padding: 10px 20px;
+}
+.ant-tabs-top >.ant-tabs-nav::before{
+  border: none;
+}
+.ant-btn-variant-outlined{
+  box-shadow: none;
+  border-color: white;
+  background: #12ABDB0F;
+}
+.ant-btn-variant-outlined:not(:disabled):not(.ant-btn-disabled):hover{
+  border-color: white;
+}
+.editTable-container .ant-input {
+  padding: 5px !important;
+  min-width: 40px !important
+}
+.ant-tabs .ant-tabs-tab+.ant-tabs-tab {
+  margin: 0 0 0 0px;
+  /* padding: 0px 5px; */
+
+}
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-disabled {
+  color: #64748B;
+  background-color: #e7626212;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active {
+ /* padding: 0px 5px !important;  */
+ background-color: #D1DDEC !important;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+  color: #181818 !important;
+}
+.ant-tabs .ant-tabs-tab{
+  padding: 8px !important;
+}
+.ant-tabs-nav-list{
+  background-color: #ffffff;
+  border-bottom: 1px solid #8080803b;
+  border: 5px;
+}
+
+/* .ant-tabs-nav-wrap.ant-tabs-nav-wrap-ping-right {
+  overflow: visible !important;
+
+} */
+
+/* .layout-content-container{
+  padding: 10px;
+  overflow-y: auto;
+  height: calc(-138px + 100vh);
+} */
+
+.reg-button{
+  color: #ffffff !important;
+}
+.ant-menu-light>.ant-menu .ant-menu-item-selected {
+  background-color: #0070AD;
+}
+.manualQueue-container, .touchlessProcess-container, .underProcess-container, .rejectedQueue-container {
+  overflow: auto;
+  height: 700px;
+}
+.tabContainer{
+  height: 700px;
+  overflow-x: hidden;
+}
+.pdfContainer{
+  height: 700px;
+}
+

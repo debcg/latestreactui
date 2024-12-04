@@ -145,11 +145,13 @@ const TouchlessProcessedPage = () => {
     setSelectedStatus(value);
   };
 
-  const handlePaginationChange = (page, size) => {
-    setCurrent(page);
-    setPageSize(size);
+  // const handlePaginationChange = (page, size) => {
+  //   setCurrent(page);
+  //   setPageSize(size);
+  // };
+  const handlePaginationChange = (page) => {
+    setCurrent(page); // Update current page
   };
-
   const handleDateRangeChange = (dates) => {
     setDateRange(dates);
   };
@@ -172,23 +174,39 @@ const TouchlessProcessedPage = () => {
     {
       title: "Invoice Date",
       dataIndex: "invoiceDate",
-      sorter: true,
+      sorter: (a, b) => {
+        const dateA = moment(a.invoiceDate, "DD-MM-YYYY").toDate();
+        const dateB = moment(b.invoiceDate, "DD-MM-YYYY").toDate();
+        return dateA - dateB;
+      },
     },
     {
       title: "Invoice ID",
       dataIndex: "invoiceId",
-      sorter: true,
+      sorter: (a, b) => {
+        const idA = a.invoiceId ? String(a.invoiceId) : "";
+        const idB = b.invoiceId ? String(b.invoiceId) : "";
+        return idA.localeCompare(idB);
+      },
       render: (text) => <span style={{ color: "#605BFF", fontWeight: 600 }}>{text}</span>,
     },
     {
       title: "Purchase Order",
       dataIndex: "purchase_order",
-      sorter: true,
+      sorter: (a, b) => {
+        const orderA = a.purchase_order ? String(a.purchase_order) : "";
+        const orderB = b.purchase_order ? String(b.purchase_order) : "";
+        return orderA.localeCompare(orderB);
+      },
     },
     {
       title: "Vendor",
       dataIndex: "vendor_name",
-      sorter: true,
+      sorter: (a, b) => {
+        const nameA = a.vendor_name ? String(a.vendor_name) : "";
+        const nameB = b.vendor_name ? String(b.vendor_name) : "";
+        return nameA.localeCompare(nameB);
+      },
       render: (text) => (
         <div className="truncate max-w-[200px]" title={text}>
           {text}
@@ -196,9 +214,13 @@ const TouchlessProcessedPage = () => {
       ),
     },
     {
-      title: "Subject",
+      title: "Stage",
       dataIndex: "subject",
-      sorter: true,
+      sorter: (a, b) => {
+        const subjectA = a.subject ? String(a.subject) : "";
+        const subjectB = b.subject ? String(b.subject) : "";
+        return subjectA.localeCompare(subjectB);
+      },
       render: (subject) => (
         <span className="whitespace-nowrap" style={{ color: getSubjectColor(subject) }}>
           {subject}
@@ -208,7 +230,11 @@ const TouchlessProcessedPage = () => {
     {
       title: "Status",
       dataIndex: "status",
-      sorter: true,
+      sorter: (a, b) => {
+        const statusA = a.status ? String(a.status) : "";
+        const statusB = b.status ? String(b.status) : "";
+        return statusA.localeCompare(statusB);
+      },
       render: (status) => (
         <span
           className="px-2 py-1 rounded-[5px] text-white text-xs whitespace-nowrap"
@@ -221,7 +247,7 @@ const TouchlessProcessedPage = () => {
     {
       title: "Time Stamp",
       dataIndex: "timestamp",
-      sorter: true,
+      sorter: (a, b) => new Date(a.timestamp) - new Date(b.timestamp),
       render: (timestamp) => <span className="whitespace-nowrap">{isoToDateTime(timestamp)}</span>,
     },
     {
@@ -231,8 +257,7 @@ const TouchlessProcessedPage = () => {
         <Button
           type="primary"
           size="small"
-          // onClick={() => handleViewClick(record.invoiceId)}
-          onClick={() => handleViewClick(record)}  
+          onClick={() => handleViewClick(record.status, record)}
           style={{ background: "#0070AD", fontWeight: 500 }}
         >
           <ArrowUpOutlined style={{ transform: "rotate(45deg)", fontSize: "16px" }} />
@@ -240,23 +265,51 @@ const TouchlessProcessedPage = () => {
       ),
     },
   ];
+  
+  
+  // const handleViewClick = (record) => {
 
-  const handleViewClick = (record) => {
+  //   navigate(`/invoice-queue/touchless-processed/${record.invoiceId}`, {
+  //     state: { record }, 
+  //   });
+  // };
 
-    navigate(`/invoice-queue/touchless-processed/${record.invoiceId}`, {
-      state: { record }, 
+  const handleViewClick = (queueName, record) => {
+    if (!record) {
+      console.error("Record is undefined or null.");
+      return;
+    }
+ 
+    let { transaction_id, status, invoiceId } = record; // Destructure transaction_id, status, and invoiceId from the record
+ 
+    // Ensure transaction_id and invoiceId are strings
+    transaction_id = transaction_id ? String(transaction_id) : '';
+    invoiceId = invoiceId ? String(invoiceId) : '';
+ 
+    // Replace spaces and special characters in `invoiceId`, allowing `_`, `-`, and `@`
+    const sanitizedInvoiceId = invoiceId
+      .trim()
+      .replace(/[^a-zA-Z0-9_\-@]/g, '-') // Replace characters not allowed in URLs
+      .replace(/\s+/g, '-'); // Replace spaces with hyphens
+ 
+    // Sanitize the other values
+    const sanitizedQueueName = encodeURIComponent(queueName.trim().toLowerCase().replace(/\s+/g, '-')); // Replace spaces with hyphens and encode
+    const sanitizedTransactionId = encodeURIComponent(transaction_id.trim()); // Encode transaction_id
+ 
+    // Construct the dynamic URL
+    const dynamicUrl = `/invoice-queue/viewinvoice/${sanitizedTransactionId}/${sanitizedInvoiceId}/${sanitizedQueueName}`;
+ 
+    // Dynamically navigate to the correct URL
+    navigate(dynamicUrl, {
+      state: { record },
     });
   };
-//  const handleViewClick = (invoiceId) => {
-//     navigate(`/invoice-queue/touchless-processed/${invoiceId}`);
-//   };
-
 
   return (
-    <div className="p-4">
+    <div className="touchlessProcess-container">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2 font-bold">
-          Last Updated: 25 Aug 2024, 02:51 PM
+          Last Updated: {new Date().toLocaleString(undefined, { dateStyle: 'full', timeStyle: 'medium' })}
         </h1>
         <Space>
           <Upload
@@ -313,7 +366,7 @@ const TouchlessProcessedPage = () => {
           dataSource={paginatedData}
           pagination={{
             current,
-            pageSize,
+            pageSize:10,
             total: filteredData.length,
             onChange: handlePaginationChange,
             showSizeChanger: true,

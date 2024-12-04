@@ -24,7 +24,9 @@ import ErpDataTab from "./ErpDataTab";
 import InvoicePostedTab from "./InvoicePostedTab";
 import NWayMatching from "./NWayMatching";
 import { useLocation } from "react-router-dom";
-  pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+import SplitPane from "react-split-pane";
+import { FullscreenOutlined, FullscreenExitOutlined } from "@ant-design/icons";
+pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 const { TabPane } = Tabs;
 
@@ -40,6 +42,13 @@ const TouchlessProcessDetailsPage = () => {
   const [tabData, setTabData] = useState(null);
   const [pdfUrl, setPdfUrl] = useState(null);
 
+  const [rejectionData, setRejectData] = useState(null);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const toggleFullScreen = () => {
+    setIsFullScreen(!isFullScreen);
+  };
+
   useEffect(() => {
     return () => {
       clearTabTitle();
@@ -53,31 +62,49 @@ const TouchlessProcessDetailsPage = () => {
         const response = await axios.post(
           "https://p2p-ui-invoice-handle.azurewebsites.net/api/query_transaction",
           {
-             transaction_id: record?.transaction_id,
-            
+            transaction_id: record?.transaction_id,
+
           }
         );
         setTabData(response.data);
-       
+
       } catch (error) {
         console.error("Error fetching tab data:", error);
       }
     };
-  
-    fetchTabData();
-  }, []); // Fetch tab data only once
-  
 
+    fetchTabData();
+  }, []);
+
+  useEffect(() => {
+    const fetchRejectData = async () => {
+      try {
+        const response = await axios.get(
+          "https://p2p-dev-fa-rejection-flow-frontend-handler3.azurewebsites.net/api/display_rejection_template_details?param=udfhalksdjnfgakjsdngf",
+          {
+            transaction_id: record?.transaction_id,
+
+          }
+        );
+        setRejectData(response.data);
+
+      } catch (error) {
+        console.error("Error fetching tab data:", error);
+      }
+    };
+
+    fetchRejectData();
+  }, []);
 
   useEffect(() => {
     const fetchPdfUrl = async () => {
-      if (!tabData) return; // Wait for tabData to load
-  
+      if (!tabData) return;
+
       try {
         const pdfResponse = await axios.post(
           "https://p2p-ui-invoice-handle.azurewebsites.net/api/get_base64",
           {
-            filename: tabData?.data?.source?.transaction?.id, // Ensure tabData is valid
+            filename: tabData?.data?.source?.transaction?.id,
             environment: "test",
           }
         );
@@ -85,15 +112,17 @@ const TouchlessProcessDetailsPage = () => {
         const pdfBlob = base64ToBlob(base64String, "application/pdf");
         const url = URL.createObjectURL(pdfBlob);
         setPdfUrl(url);
-     
+
       } catch (error) {
         console.error("Error fetching PDF URL:", error);
       }
     };
-  
+
     fetchPdfUrl();
-  }, [tabData]); // Trigger fetching the PDF when tabData updates
-  
+  }, [tabData]);
+
+
+
   function base64ToBlob(base64, type = "application/pdf") {
     try {
       const binary = atob(base64);
@@ -151,12 +180,12 @@ const TouchlessProcessDetailsPage = () => {
       icon: <CheckCircle size={16} style={{ borderRadius: "1.8px solid #02823D", color: "#02823D" }} />,
       headerTitle: "Invoice Queue - N-Way Matching",
     },
-    // {
-    //   key: "rejection-notification",
-    //   label: "Rejection Notification",
-    //   icon: <CheckCircle size={16} style={{ borderRadius: "1.8px solid #02823D", color: "#02823D" }} />,
-    //   headerTitle: "Invoice Queue - Rejection Notification",
-    // },
+    {
+      key: "rejection-notification",
+      label: "Rejection Notification",
+      icon: <CheckCircle size={16} style={{ borderRadius: "1.8px solid #02823D", color: "#02823D" }} />,
+      headerTitle: "Invoice Queue - Rejection Notification",
+    },
     {
       key: "invoice-posted",
       label: "Invoice Posted",
@@ -199,7 +228,7 @@ const TouchlessProcessDetailsPage = () => {
                     Subject: {tabData?.data?.source?.event_details?.subject || "No subject available"}
                   </p>
 
-                  <p><span style={{ display: "flex", marginRight: "4px" }}>
+                  <p><span style={{ display: "flex", marginRight: "4px",lineHeight: "17px" }}>
                     <FileText size={16} style={{ marginRight: "4px" }} />
                     {tabData?.data?.source?.email_details?.Attachment || "No attachment available"}
                   </span>
@@ -223,11 +252,11 @@ const TouchlessProcessDetailsPage = () => {
         return <NWayMatching nWayatchingData={tabData} />;
       case "invoice-posted":
         return <InvoicePostedTab InvoicePosted={tabData} />;
-      // case "Rejection Notification":
-      //   return (
+      case "rejection-notification":
+        return (
 
-      //     <RejectionNotification isEditing={isEditing} setIsEditing={setIsEditing} />
-      //   );
+          <RejectionNotification isEditing={isEditing} setIsEditing={setIsEditing} regData={rejectionData} />
+        );
       default:
         return (
           <div className="bg-white p-4 rounded-lg shadow">
@@ -280,38 +309,79 @@ const TouchlessProcessDetailsPage = () => {
     if (tabData?.data?.match_results) {
       enabledTabs["n-way-matching"] = true;
     }
-    // if (tabData?.data?.rejection_notification) {
-    //   enabledTabs["rejection-notification"] = true;
-    // }
+    if (tabData?.data?.invoice) {
+      enabledTabs["rejection-notification"] = true;
+    }
     if (tabData?.data?.invoice_posting_results) {
       enabledTabs["invoice-posted"] = true;
     }
     return enabledTabs;
   };
-  
+
   const enabledTabs = checkTabDataForEnablement();
-const currentTime = new Date().toLocaleTimeString();
+// useEffect(() => {
+//     // Set active tab based on reason
+//     if (activeReason === "Primary Validation failed - Send to Manual queue") {
+//       setActiveTab("validation");
+//     } else if (activeReason === "Secondary Validation failed - Send to Manual queue") {
+//       setActiveTab("validate-with-erp");
+//     } else {
+//       setActiveTab("invoice-received");
+//     }
+//   }, [activeReason]);
   return (
-    <div>
-      <div className="flex justify-between">
-        <span style={{ fontSize: "14px", fontWeight: "600" }}>Last Update: {new Date().toLocaleString(undefined, { dateStyle: 'full', timeStyle: 'medium' })}</span>
-        <Button className="mr-4" style={{ backgroundColor: "#0070AD", color: "white", fontSize: "12px" }}>Confidence Score</Button>
+    <div className="manual-view-container">
+      <div className="flex justify-between mb-2">
+        <span style={{ fontSize: "14px", fontWeight: "600" }}>
+          Last Update:{" "}
+          {new Date().toLocaleString(undefined, {
+            dateStyle: "full",
+            timeStyle: "medium",
+          })}
+        </span>
+        <Button
+          style={{ backgroundColor: "#0070AD", color: "white", fontSize: "12px" }}
+        >
+          Confidence Score
+        </Button>
       </div>
-      <div className="flex flex-col md:flex-row h-screen bg-gray-100">
-        {/* Left side: PDF viewer */}
-        <div className="w-full md:w-1/3 p-4 h-1/2 md:h-full">
-          <div className="bg-white h-full rounded-lg shadow-lg p-2 overflow-auto">
+      <div
+        className={`flex flex-col ${isFullScreen ? "h-screen" : "md:flex-row h-screen"
+          } bg-gray-100`}
+      >
+        {/* PDF Viewer Container */}
+        <div
+          className={`${isFullScreen ? "w-full h-full" : "w-full md:w-1/3 h-1/2 md:h-full"
+            }`}
+        >
+          <div className="bg-white  rounded-lg shadow-lg p-2 overflow-auto relative pdfContainer">
+            {/* Full-Screen h-full Toggle Button */}
+            <Button
+              type="primary"
+              shape="circle"
+              icon={isFullScreen ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
+              onClick={toggleFullScreen}
+              style={{
+                position: "absolute",
+                top: "5px",
+                right: "10px",
+                zIndex: 10,
+              }}
+            />
             {pdfUrl ? (
               <object
                 title="pdf"
                 data={`${pdfUrl}#view=FitH`}
                 type="application/pdf"
                 style={{
-                  width: "100%", // Adjusts to the container's full width
-                  height: "577px", // Adjusts to the container's full height
+                  width: "100%",
+                  height: "100%",
                 }}
               >
-                <p>Your browser doesn't support PDF viewing. Please download the PDF to view it.</p>
+                <p>
+                  Your browser doesn't support PDF viewing. Please download the
+                  PDF to view it.
+                </p>
               </object>
             ) : (
               <div>Loading PDF...</div>
@@ -319,49 +389,42 @@ const currentTime = new Date().toLocaleTimeString();
           </div>
         </div>
 
-        {/* Right side: Tabs and content */}
-        <div className="w-full md:w-2/3 p-4 h-1/2 md:h-full overflow-y-auto">
-          <Tabs
-            activeKey={activeTab}
-            onChange={handleTabChange}
-            defaultActiveKey="invoice-received"
-          >
-            {/* {tabs.map((tab) => (
-              <TabPane
-                key={tab.key}
-                tab={
-                  <span className="flex items-center">
-                    <span className="mr-4 mt-4">{tab.label}</span>
-                    {tab.icon}
-
-                  </span>
-                }
-              >
-                {renderTabContent(tab.key)}
-              </TabPane>
-            ))} */}
-
-            {tabs.map((tab) => (
-              <TabPane
-                key={tab.key}
-                disabled={!enabledTabs[tab.key]} // Disable tab based on the condition
-                tab={
-                  <span className="flex items-center">
-                    <span className="pr-2">{tab.label}</span>
-                    {/* Change the icon based on whether the tab is disabled or not */}
-                    {enabledTabs[tab.key] ? (
-                      <CheckCircle size={16} style={{ color: "#02823D", marginBottom:"12px" }} />
-                    ) : (
-                      <XCircle size={16} style={{ color: "#FF0000", marginBottom:"12px"}} />
-                    )}
-                  </span>
-                }
-              >
-                {renderTabContent(tab.key)}
-              </TabPane>
-            ))}
-          </Tabs>
-        </div>
+        {/* Right side: Tabs and content h-1/2 md:h-full */}
+        {!isFullScreen && (
+          <div className="w-full md:w-2/3 pl-2 overflow-y-auto tabContainer">
+            <Tabs
+              activeKey={activeTab}
+              onChange={handleTabChange}
+              defaultActiveKey="invoice-received"
+              className="custom-tabs"
+            >
+              {tabs.map((tab) => (
+                <TabPane
+                  key={tab.key}
+                  disabled={!enabledTabs[tab.key]} // Disable tab based on the condition
+                  tab={
+                    <span className="flex items-center">
+                      <span className="pr-2">{tab.label}</span>
+                      {enabledTabs[tab.key] ? (
+                        <CheckCircle
+                          size={16}
+                          style={{ color: "#02823D", marginBottom: "12px" }}
+                        />
+                      ) : (
+                        <XCircle
+                          size={16}
+                          style={{ color: "#FF0000", marginBottom: "12px" }}
+                        />
+                      )}
+                    </span>
+                  }
+                >
+                  {renderTabContent(tab.key)}
+                </TabPane>
+              ))}
+            </Tabs>
+          </div>
+        )}
       </div>
     </div>
   );

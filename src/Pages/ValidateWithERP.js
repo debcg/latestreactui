@@ -30,6 +30,10 @@ const ValidateWithERP = ({ validateWithErpData }) => {
   const { result, performance } = ValidationMatchingGorulesResult || {};
   const { fields = [], overallStatus, overallnextStep } = result || {};
 
+  // Split the fields into two arrays: False status first, then True status
+  const falseStatusFields = fields.filter((item) => item.status === "False");
+  const trueStatusFields = fields.filter((item) => item.status === "True");
+
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
@@ -84,9 +88,27 @@ const ValidateWithERP = ({ validateWithErpData }) => {
               </tr>
             </thead>
             <tbody>
-              {fields.map((item, index) => (
+              {/* First render all False status items */}
+              {falseStatusFields.map((item, index) => (
                 <tr key={index} className="border-b">
                   <td className="p-2">{index + 1}</td>
+                  <td className="p-2 text-blue-600">{item.field}</td>
+                  <td className="p-2">{item.message}</td>
+                  <td className="p-2">
+                    <span
+                      className={`px-3 py-1 rounded-[5px] ${item.status === "True" ? "bg-green-500" : "bg-red-500"
+                        } text-white`}
+                    >
+                      {item.status === "True" ? "True" : "False"}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+
+              {/* Then render all True status items */}
+              {trueStatusFields.map((item, index) => (
+                <tr key={index + falseStatusFields.length} className="border-b">
+                  <td className="p-2">{index + falseStatusFields.length + 1}</td>
                   <td className="p-2 text-blue-600">{item.field}</td>
                   <td className="p-2">{item.message}</td>
                   <td className="p-2">
@@ -103,12 +125,6 @@ const ValidateWithERP = ({ validateWithErpData }) => {
           </table>
         </div>
       </div>
-      {/* <div className="bg-white p-4 rounded-lg shadow mb-4">
-        <h4 className="font-semibold">Overall Status</h4>
-        <p>{overallStatus === "True" ? "Validation Passed" : "Validation Failed"}</p>
-        <h4 className="font-semibold">Next Step</h4>
-        <p>{overallnextStep}</p>
-      </div> */}
     </div>
   );
 };

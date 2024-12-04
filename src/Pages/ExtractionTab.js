@@ -170,7 +170,7 @@ const ExtractionTab = ({ extractionData, recordData }) => {
               </Col>
               <Col span={12}>
                 <Card bordered>
-                  <div className="mb-0">
+                  <div className="mb-2">
                     <h3 className="mb-2" style={{ color: "#B02727" }}>Vendor & Customer Details</h3>
                     <hr />
                   </div>

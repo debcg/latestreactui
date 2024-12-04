@@ -238,10 +238,10 @@ const InvoiceQueue = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="invoiceQueue-container">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2 font-bold">
-          Last Updated: 25 Aug 2024, 02:51 PM
+          Last Updated: {new Date().toLocaleString(undefined, { dateStyle: 'full', timeStyle: 'medium' })}
         </h1>
         <Space>
           <Upload

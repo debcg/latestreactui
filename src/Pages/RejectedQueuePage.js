@@ -194,7 +194,7 @@ const RejectedQueuePage = () => {
       ),
     },
     {
-      title: "Subject",
+      title: "Stage",
       dataIndex: "subject",
       sorter: true,
       render: (subject) => (
@@ -229,7 +229,7 @@ const RejectedQueuePage = () => {
         <Button
           type="primary"
           size="small"
-          onClick={() => handleViewClick(record)}
+          onClick={() => handleViewClick(record.status, record)}
           style={{ background: "#0070AD", fontWeight: 500 }}
         >
           <ArrowUpOutlined style={{ transform: "rotate(45deg)", fontSize: "16px" }} />
@@ -238,19 +238,46 @@ const RejectedQueuePage = () => {
     },
   ];
 
-  // const handleViewClick = (invoiceId) => {
-  //   navigate(`/invoice-queue/touchless-processed/${invoiceId}`);
-  // };
-  const handleViewClick = (record) => {
-    navigate(`/invoice-queue/touchless-processed/${record.invoiceId}`, {
-      state: { record }, 
+  const handleViewClick = (queueName, record) => {
+    if (!record) {
+      console.error("Record is undefined or null.");
+      return;
+    }
+ 
+    let { transaction_id, status, invoiceId } = record; // Destructure transaction_id, status, and invoiceId from the record
+ 
+    // Ensure transaction_id and invoiceId are strings
+    transaction_id = transaction_id ? String(transaction_id) : '';
+    invoiceId = invoiceId ? String(invoiceId) : '';
+ 
+    // Replace spaces and special characters in `invoiceId`, allowing `_`, `-`, and `@`
+    const sanitizedInvoiceId = invoiceId
+      .trim()
+      .replace(/[^a-zA-Z0-9_\-@]/g, '-') // Replace characters not allowed in URLs
+      .replace(/\s+/g, '-'); // Replace spaces with hyphens
+ 
+    // Sanitize the other values
+    const sanitizedQueueName = encodeURIComponent(queueName.trim().toLowerCase().replace(/\s+/g, '-')); // Replace spaces with hyphens and encode
+    const sanitizedTransactionId = encodeURIComponent(transaction_id.trim()); // Encode transaction_id
+ 
+    // Construct the dynamic URL
+    const dynamicUrl = `/invoice-queue/viewinvoice/${sanitizedTransactionId}/${sanitizedInvoiceId}/${sanitizedQueueName}`;
+ 
+    // Dynamically navigate to the correct URL
+    navigate(dynamicUrl, {
+      state: { record },
     });
   };
+  // const handleViewClick = (record) => {
+  //   navigate(`/invoice-queue/touchless-processed/${record.invoiceId}`, {
+  //     state: { record }, 
+  //   });
+  // };
   return (
-    <div className="p-4">
+    <div className="rejectedQueue-container">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2 font-bold">
-          Last Updated: 25 Aug 2024, 02:51 PM
+          Last Updated: {new Date().toLocaleString(undefined, { dateStyle: 'full', timeStyle: 'medium' })}
         </h1>
         <Space>
           <Upload

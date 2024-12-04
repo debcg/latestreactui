@@ -11,7 +11,7 @@ const { Content } = Layout;
 
 const MetricDefinitions = () => {
   return (
-    <Content style={{ padding: '20px' }}>
+    <Content style={{ padding: '15px' }}>
       <h1 className="mb-5" style={{fontSize:"18px", fontWeight:"500"}}>Metric Definitions</h1>
       <Row gutter={[16, 16]}>
         {metricDefinitionData.map((item, index) => (

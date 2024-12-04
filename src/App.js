@@ -6,6 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import InvoicesPage from "./Pages/InvoicesPage";
+import InvoiceQueue from "./Pages/InvoiceQueue";
 import Login from "./Pages/Login";
 import AuthenticatedLayout from "./Components/AuthenticatedLayout";
 import "./styles.css";
@@ -14,7 +15,7 @@ import TouchlessProcessedPage from "./Pages/TouchlessProcessedPage";
 import UnderProcessPage from "./Pages/UnderProcessPage";
 import ManualQueuePage from "./Pages/ManualQueuePage";
 import RejectedQueuePage from "./Pages/RejectedQueuePage";
-import MatchDefinitionsPage from "./Pages/MatchDefinitionsPage";
+import MetricDefinitionsPage from "./Pages/MetricDefinitionsPage";
 import TouchlessProcessDetailsPage from "./Pages/TouchlessProcessDetailsPage";
 
 const App = () => {
@@ -27,20 +28,23 @@ const App = () => {
         <Route element={<AuthenticatedLayout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/invoice-queue" element={<InvoicesPage />}>
+          <Route path="/invoice-queue" element={<InvoiceQueue />}></Route>
             <Route
               path="touchless-processed"
               element={<TouchlessProcessedPage />}
             />
-            <Route
+            
+            {/* <Route
               path="touchless-processed/:id"
               element={<TouchlessProcessDetailsPage />}
-            />
+            /> */}
+            <Route path="/invoice-queue/viewinvoice/:transaction_id/:invoiceId/:queueName" element={<TouchlessProcessDetailsPage />} />
             <Route path="under-process" element={<UnderProcessPage />} />
             <Route path="manual-queue" element={<ManualQueuePage />} />
             <Route path="rejected-queue" element={<RejectedQueuePage />} />
             
           </Route>
-          <Route path="/match-definitions" element={<MatchDefinitionsPage />} />
+          <Route path="/metric-definitions" element={<MetricDefinitionsPage />} />
         </Route>
 
         {/* Login route */}
